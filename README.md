@@ -29,10 +29,10 @@ function kgwf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubec
 ...
 ```
 
-See [the full list](kubectl_aliases.ps1).
+See [the full list](../../raw/master/kubectl_aliases.ps1).
 
 ### Installation
-You can directly download the [`kubectl_aliases.ps1`](kubectl_aliases.ps1) file and save it to PowerShell profile directory: `$Home\Documents\WindowsPowerShell\` then run this command to edit your `profile.ps1`:
+You can directly download the [`kubectl_aliases.ps1`](../../raw/master/kubectl_aliases.ps1) file and save it to PowerShell profile directory: `$Home\Documents\WindowsPowerShell\` then run this command to edit your `profile.ps1`:
 
 ```powershell
 '. $Home\Documents\WindowsPowerShell\kubectl_aliases.ps1' | Out-File $PROFILE.CurrentUserAllHosts -Encoding ascii -Append
