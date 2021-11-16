@@ -1,5 +1,3 @@
-# Copyright 2019 Google Inc.
-#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -12,793 +10,793 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-function k([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl $params }
-function ksys([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system $params }
-function ka([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl apply --recursive -f $params }
-function ksysa([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system apply --recursive -f $params }
-function kak([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl apply -k $params }
-function kk([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl kustomize $params }
-function kex([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl exec -i -t $params }
-function ksysex([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system exec -i -t $params }
-function klo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl logs -f $params }
-function ksyslo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system logs -f $params }
-function klop([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl logs -f -p $params }
-function ksyslop([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system logs -f -p $params }
-function kp([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl proxy $params }
-function kpf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl port-forward $params }
-function kg([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get $params }
-function ksysg([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get $params }
-function kd([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe $params }
-function ksysd([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe $params }
-function krm([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete $params }
-function ksysrm([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete $params }
-function krun([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t $params }
-function ksysrun([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t $params }
-function kgpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods $params }
-function ksysgpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods $params }
-function kdpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pods $params }
-function ksysdpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe pods $params }
-function krmpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pods $params }
-function ksysrmpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete pods $params }
-function kgdep([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment $params }
-function ksysgdep([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment $params }
-function kddep([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe deployment $params }
-function ksysddep([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe deployment $params }
-function krmdep([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete deployment $params }
-function ksysrmdep([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete deployment $params }
-function kgsvc([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service $params }
-function ksysgsvc([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service $params }
-function kdsvc([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe service $params }
-function ksysdsvc([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe service $params }
-function krmsvc([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete service $params }
-function ksysrmsvc([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete service $params }
-function kging([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress $params }
-function ksysging([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress $params }
-function kding([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe ingress $params }
-function ksysding([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe ingress $params }
-function krming([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ingress $params }
-function ksysrming([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete ingress $params }
-function kgcm([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap $params }
-function ksysgcm([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap $params }
-function kdcm([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe configmap $params }
-function ksysdcm([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe configmap $params }
-function krmcm([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete configmap $params }
-function ksysrmcm([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete configmap $params }
-function kgsec([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret $params }
-function ksysgsec([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret $params }
-function kdsec([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe secret $params }
-function ksysdsec([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe secret $params }
-function krmsec([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete secret $params }
-function ksysrmsec([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete secret $params }
-function kgno([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes $params }
-function kdno([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe nodes $params }
-function kgns([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces $params }
-function kdns([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe namespaces $params }
-function krmns([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete namespaces $params }
-function kgoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=yaml $params }
-function ksysgoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get -o=yaml $params }
-function kgpooyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=yaml $params }
-function ksysgpooyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods -o=yaml $params }
-function kgdepoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=yaml $params }
-function ksysgdepoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment -o=yaml $params }
-function kgsvcoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=yaml $params }
-function ksysgsvcoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service -o=yaml $params }
-function kgingoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=yaml $params }
-function ksysgingoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress -o=yaml $params }
-function kgcmoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=yaml $params }
-function ksysgcmoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap -o=yaml $params }
-function kgsecoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=yaml $params }
-function ksysgsecoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret -o=yaml $params }
-function kgnooyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=yaml $params }
-function kgnsoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=yaml $params }
-function kgowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide $params }
-function ksysgowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get -o=wide $params }
-function kgpoowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=wide $params }
-function ksysgpoowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods -o=wide $params }
-function kgdepowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide $params }
-function ksysgdepowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment -o=wide $params }
-function kgsvcowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=wide $params }
-function ksysgsvcowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service -o=wide $params }
-function kgingowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=wide $params }
-function ksysgingowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress -o=wide $params }
-function kgcmowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=wide $params }
-function ksysgcmowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap -o=wide $params }
-function kgsecowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=wide $params }
-function ksysgsecowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret -o=wide $params }
-function kgnoowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=wide $params }
-function kgnsowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=wide $params }
-function kgojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=json $params }
-function ksysgojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get -o=json $params }
-function kgpoojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=json $params }
-function ksysgpoojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods -o=json $params }
-function kgdepojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=json $params }
-function ksysgdepojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment -o=json $params }
-function kgsvcojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=json $params }
-function ksysgsvcojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service -o=json $params }
-function kgingojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=json $params }
-function ksysgingojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress -o=json $params }
-function kgcmojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=json $params }
-function ksysgcmojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap -o=json $params }
-function kgsecojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=json $params }
-function ksysgsecojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret -o=json $params }
-function kgnoojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=json $params }
-function kgnsojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=json $params }
-function kgall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces $params }
-function kdall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe --all-namespaces $params }
-function kgpoall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces $params }
-function kdpoall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pods --all-namespaces $params }
-function kgdepall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces $params }
-function kddepall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe deployment --all-namespaces $params }
-function kgsvcall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces $params }
-function kdsvcall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe service --all-namespaces $params }
-function kgingall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --all-namespaces $params }
-function kdingall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe ingress --all-namespaces $params }
-function kgcmall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces $params }
-function kdcmall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe configmap --all-namespaces $params }
-function kgsecall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces $params }
-function kdsecall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe secret --all-namespaces $params }
-function kgnsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces $params }
-function kdnsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe namespaces --all-namespaces $params }
-function kgsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels $params }
-function ksysgsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --show-labels $params }
-function kgposl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels $params }
-function ksysgposl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --show-labels $params }
-function kgdepsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels $params }
-function ksysgdepsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --show-labels $params }
-function krmall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete --all $params }
-function ksysrmall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete --all $params }
-function krmpoall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pods --all $params }
-function ksysrmpoall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete pods --all $params }
-function krmdepall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete deployment --all $params }
-function ksysrmdepall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete deployment --all $params }
-function krmsvcall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete service --all $params }
-function ksysrmsvcall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete service --all $params }
-function krmingall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ingress --all $params }
-function ksysrmingall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete ingress --all $params }
-function krmcmall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete configmap --all $params }
-function ksysrmcmall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete configmap --all $params }
-function krmsecall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete secret --all $params }
-function ksysrmsecall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete secret --all $params }
-function krmnsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete namespaces --all $params }
-function kgw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch $params }
-function ksysgw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch $params }
-function kgpow([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch $params }
-function ksysgpow([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch $params }
-function kgdepw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch $params }
-function ksysgdepw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch $params }
-function kgsvcw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch $params }
-function ksysgsvcw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service --watch $params }
-function kgingw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch $params }
-function ksysgingw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress --watch $params }
-function kgcmw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch $params }
-function ksysgcmw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap --watch $params }
-function kgsecw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch $params }
-function ksysgsecw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret --watch $params }
-function kgnow([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch $params }
-function kgnsw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch $params }
-function kgoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=yaml --all-namespaces $params }
-function kgpooyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=yaml --all-namespaces $params }
-function kgdepoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=yaml --all-namespaces $params }
-function kgsvcoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=yaml --all-namespaces $params }
-function kgingoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=yaml --all-namespaces $params }
-function kgcmoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=yaml --all-namespaces $params }
-function kgsecoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=yaml --all-namespaces $params }
-function kgnsoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=yaml --all-namespaces $params }
-function kgalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces -o=yaml $params }
-function kgpoalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces -o=yaml $params }
-function kgdepalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces -o=yaml $params }
-function kgsvcalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces -o=yaml $params }
-function kgingalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --all-namespaces -o=yaml $params }
-function kgcmalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces -o=yaml $params }
-function kgsecalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces -o=yaml $params }
-function kgnsalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces -o=yaml $params }
-function kgwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=yaml $params }
-function ksysgwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch -o=yaml $params }
-function kgpowoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=yaml $params }
-function ksysgpowoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch -o=yaml $params }
-function kgdepwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=yaml $params }
-function ksysgdepwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch -o=yaml $params }
-function kgsvcwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=yaml $params }
-function ksysgsvcwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service --watch -o=yaml $params }
-function kgingwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=yaml $params }
-function ksysgingwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress --watch -o=yaml $params }
-function kgcmwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=yaml $params }
-function ksysgcmwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap --watch -o=yaml $params }
-function kgsecwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=yaml $params }
-function ksysgsecwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret --watch -o=yaml $params }
-function kgnowoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=yaml $params }
-function kgnswoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=yaml $params }
-function kgowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide --all-namespaces $params }
-function kgpoowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=wide --all-namespaces $params }
-function kgdepowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide --all-namespaces $params }
-function kgsvcowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=wide --all-namespaces $params }
-function kgingowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=wide --all-namespaces $params }
-function kgcmowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=wide --all-namespaces $params }
-function kgsecowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=wide --all-namespaces $params }
-function kgnsowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=wide --all-namespaces $params }
-function kgallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces -o=wide $params }
-function kgpoallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces -o=wide $params }
-function kgdepallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces -o=wide $params }
-function kgsvcallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces -o=wide $params }
-function kgingallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --all-namespaces -o=wide $params }
-function kgcmallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces -o=wide $params }
-function kgsecallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces -o=wide $params }
-function kgnsallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces -o=wide $params }
-function kgowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide --show-labels $params }
-function ksysgowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get -o=wide --show-labels $params }
-function kgpoowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=wide --show-labels $params }
-function ksysgpoowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods -o=wide --show-labels $params }
-function kgdepowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide --show-labels $params }
-function ksysgdepowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment -o=wide --show-labels $params }
-function kgslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels -o=wide $params }
-function ksysgslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --show-labels -o=wide $params }
-function kgposlowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels -o=wide $params }
-function ksysgposlowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --show-labels -o=wide $params }
-function kgdepslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels -o=wide $params }
-function ksysgdepslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --show-labels -o=wide $params }
-function kgwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=wide $params }
-function ksysgwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch -o=wide $params }
-function kgpowowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=wide $params }
-function ksysgpowowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch -o=wide $params }
-function kgdepwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide $params }
-function ksysgdepwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch -o=wide $params }
-function kgsvcwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=wide $params }
-function ksysgsvcwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service --watch -o=wide $params }
-function kgingwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=wide $params }
-function ksysgingwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress --watch -o=wide $params }
-function kgcmwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=wide $params }
-function ksysgcmwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap --watch -o=wide $params }
-function kgsecwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=wide $params }
-function ksysgsecwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret --watch -o=wide $params }
-function kgnowowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=wide $params }
-function kgnswowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=wide $params }
-function kgojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=json --all-namespaces $params }
-function kgpoojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=json --all-namespaces $params }
-function kgdepojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=json --all-namespaces $params }
-function kgsvcojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=json --all-namespaces $params }
-function kgingojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=json --all-namespaces $params }
-function kgcmojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=json --all-namespaces $params }
-function kgsecojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=json --all-namespaces $params }
-function kgnsojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=json --all-namespaces $params }
-function kgallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces -o=json $params }
-function kgpoallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces -o=json $params }
-function kgdepallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces -o=json $params }
-function kgsvcallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces -o=json $params }
-function kgingallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --all-namespaces -o=json $params }
-function kgcmallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces -o=json $params }
-function kgsecallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces -o=json $params }
-function kgnsallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces -o=json $params }
-function kgwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=json $params }
-function ksysgwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch -o=json $params }
-function kgpowojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=json $params }
-function ksysgpowojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch -o=json $params }
-function kgdepwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=json $params }
-function ksysgdepwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch -o=json $params }
-function kgsvcwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=json $params }
-function ksysgsvcwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service --watch -o=json $params }
-function kgingwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=json $params }
-function ksysgingwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress --watch -o=json $params }
-function kgcmwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=json $params }
-function ksysgcmwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap --watch -o=json $params }
-function kgsecwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=json $params }
-function ksysgsecwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret --watch -o=json $params }
-function kgnowojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=json $params }
-function kgnswojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=json $params }
-function kgallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces --show-labels $params }
-function kgpoallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces --show-labels $params }
-function kgdepallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --show-labels $params }
-function kgslall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --all-namespaces $params }
-function kgposlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --all-namespaces $params }
-function kgdepslall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --all-namespaces $params }
-function kgallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces --watch $params }
-function kgpoallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces --watch $params }
-function kgdepallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --watch $params }
-function kgsvcallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces --watch $params }
-function kgingallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --all-namespaces --watch $params }
-function kgcmallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces --watch $params }
-function kgsecallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces --watch $params }
-function kgnsallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces --watch $params }
-function kgwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --all-namespaces $params }
-function kgpowall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --all-namespaces $params }
-function kgdepwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --all-namespaces $params }
-function kgsvcwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --all-namespaces $params }
-function kgingwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch --all-namespaces $params }
-function kgcmwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch --all-namespaces $params }
-function kgsecwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch --all-namespaces $params }
-function kgnswall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch --all-namespaces $params }
-function kgslw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch $params }
-function ksysgslw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --show-labels --watch $params }
-function kgposlw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --watch $params }
-function ksysgposlw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --show-labels --watch $params }
-function kgdepslw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --watch $params }
-function ksysgdepslw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --show-labels --watch $params }
-function kgwsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --show-labels $params }
-function ksysgwsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch --show-labels $params }
-function kgpowsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --show-labels $params }
-function ksysgpowsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch --show-labels $params }
-function kgdepwsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --show-labels $params }
-function ksysgdepwsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch --show-labels $params }
-function kgallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces --watch -o=yaml $params }
-function kgpoallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces --watch -o=yaml $params }
-function kgdepallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --watch -o=yaml $params }
-function kgsvcallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces --watch -o=yaml $params }
-function kgingallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --all-namespaces --watch -o=yaml $params }
-function kgcmallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces --watch -o=yaml $params }
-function kgsecallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces --watch -o=yaml $params }
-function kgnsallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces --watch -o=yaml $params }
-function kgwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=yaml --all-namespaces $params }
-function kgpowoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=yaml --all-namespaces $params }
-function kgdepwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=yaml --all-namespaces $params }
-function kgsvcwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=yaml --all-namespaces $params }
-function kgingwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=yaml --all-namespaces $params }
-function kgcmwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=yaml --all-namespaces $params }
-function kgsecwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=yaml --all-namespaces $params }
-function kgnswoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=yaml --all-namespaces $params }
-function kgwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --all-namespaces -o=yaml $params }
-function kgpowalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --all-namespaces -o=yaml $params }
-function kgdepwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --all-namespaces -o=yaml $params }
-function kgsvcwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --all-namespaces -o=yaml $params }
-function kgingwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch --all-namespaces -o=yaml $params }
-function kgcmwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch --all-namespaces -o=yaml $params }
-function kgsecwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch --all-namespaces -o=yaml $params }
-function kgnswalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch --all-namespaces -o=yaml $params }
-function kgowideallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide --all-namespaces --show-labels $params }
-function kgpoowideallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=wide --all-namespaces --show-labels $params }
-function kgdepowideallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide --all-namespaces --show-labels $params }
-function kgowideslall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide --show-labels --all-namespaces $params }
-function kgpoowideslall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=wide --show-labels --all-namespaces $params }
-function kgdepowideslall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide --show-labels --all-namespaces $params }
-function kgallowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces -o=wide --show-labels $params }
-function kgpoallowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces -o=wide --show-labels $params }
-function kgdepallowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces -o=wide --show-labels $params }
-function kgallslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces --show-labels -o=wide $params }
-function kgpoallslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces --show-labels -o=wide $params }
-function kgdepallslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --show-labels -o=wide $params }
-function kgslowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels -o=wide --all-namespaces $params }
-function kgposlowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels -o=wide --all-namespaces $params }
-function kgdepslowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels -o=wide --all-namespaces $params }
-function kgslallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --all-namespaces -o=wide $params }
-function kgposlallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --all-namespaces -o=wide $params }
-function kgdepslallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --all-namespaces -o=wide $params }
-function kgallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces --watch -o=wide $params }
-function kgpoallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces --watch -o=wide $params }
-function kgdepallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --watch -o=wide $params }
-function kgsvcallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces --watch -o=wide $params }
-function kgingallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --all-namespaces --watch -o=wide $params }
-function kgcmallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces --watch -o=wide $params }
-function kgsecallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces --watch -o=wide $params }
-function kgnsallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces --watch -o=wide $params }
-function kgwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=wide --all-namespaces $params }
-function kgpowowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=wide --all-namespaces $params }
-function kgdepwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide --all-namespaces $params }
-function kgsvcwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=wide --all-namespaces $params }
-function kgingwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=wide --all-namespaces $params }
-function kgcmwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=wide --all-namespaces $params }
-function kgsecwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=wide --all-namespaces $params }
-function kgnswowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=wide --all-namespaces $params }
-function kgwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --all-namespaces -o=wide $params }
-function kgpowallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --all-namespaces -o=wide $params }
-function kgdepwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --all-namespaces -o=wide $params }
-function kgsvcwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --all-namespaces -o=wide $params }
-function kgingwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch --all-namespaces -o=wide $params }
-function kgcmwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch --all-namespaces -o=wide $params }
-function kgsecwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch --all-namespaces -o=wide $params }
-function kgnswallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch --all-namespaces -o=wide $params }
-function kgslwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch -o=wide $params }
-function ksysgslwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --show-labels --watch -o=wide $params }
-function kgposlwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --watch -o=wide $params }
-function ksysgposlwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --show-labels --watch -o=wide $params }
-function kgdepslwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --watch -o=wide $params }
-function ksysgdepslwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --show-labels --watch -o=wide $params }
-function kgwowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=wide --show-labels $params }
-function ksysgwowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch -o=wide --show-labels $params }
-function kgpowowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=wide --show-labels $params }
-function ksysgpowowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch -o=wide --show-labels $params }
-function kgdepwowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide --show-labels $params }
-function ksysgdepwowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch -o=wide --show-labels $params }
-function kgwslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --show-labels -o=wide $params }
-function ksysgwslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch --show-labels -o=wide $params }
-function kgpowslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --show-labels -o=wide $params }
-function ksysgpowslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch --show-labels -o=wide $params }
-function kgdepwslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --show-labels -o=wide $params }
-function ksysgdepwslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch --show-labels -o=wide $params }
-function kgallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces --watch -o=json $params }
-function kgpoallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces --watch -o=json $params }
-function kgdepallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --watch -o=json $params }
-function kgsvcallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces --watch -o=json $params }
-function kgingallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --all-namespaces --watch -o=json $params }
-function kgcmallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces --watch -o=json $params }
-function kgsecallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces --watch -o=json $params }
-function kgnsallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces --watch -o=json $params }
-function kgwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=json --all-namespaces $params }
-function kgpowojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=json --all-namespaces $params }
-function kgdepwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=json --all-namespaces $params }
-function kgsvcwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=json --all-namespaces $params }
-function kgingwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=json --all-namespaces $params }
-function kgcmwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=json --all-namespaces $params }
-function kgsecwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=json --all-namespaces $params }
-function kgnswojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=json --all-namespaces $params }
-function kgwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --all-namespaces -o=json $params }
-function kgpowallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --all-namespaces -o=json $params }
-function kgdepwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --all-namespaces -o=json $params }
-function kgsvcwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --all-namespaces -o=json $params }
-function kgingwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch --all-namespaces -o=json $params }
-function kgcmwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch --all-namespaces -o=json $params }
-function kgsecwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch --all-namespaces -o=json $params }
-function kgnswallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch --all-namespaces -o=json $params }
-function kgallslw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces --show-labels --watch $params }
-function kgpoallslw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces --show-labels --watch $params }
-function kgdepallslw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --show-labels --watch $params }
-function kgallwsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces --watch --show-labels $params }
-function kgpoallwsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces --watch --show-labels $params }
-function kgdepallwsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --watch --show-labels $params }
-function kgslallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --all-namespaces --watch $params }
-function kgposlallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --all-namespaces --watch $params }
-function kgdepslallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --all-namespaces --watch $params }
-function kgslwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch --all-namespaces $params }
-function kgposlwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --watch --all-namespaces $params }
-function kgdepslwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --watch --all-namespaces $params }
-function kgwallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --all-namespaces --show-labels $params }
-function kgpowallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --all-namespaces --show-labels $params }
-function kgdepwallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --all-namespaces --show-labels $params }
-function kgwslall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --show-labels --all-namespaces $params }
-function kgpowslall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --show-labels --all-namespaces $params }
-function kgdepwslall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --show-labels --all-namespaces $params }
-function kgallslwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces --show-labels --watch -o=wide $params }
-function kgpoallslwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces --show-labels --watch -o=wide $params }
-function kgdepallslwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --show-labels --watch -o=wide $params }
-function kgallwowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces --watch -o=wide --show-labels $params }
-function kgpoallwowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces --watch -o=wide --show-labels $params }
-function kgdepallwowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --watch -o=wide --show-labels $params }
-function kgallwslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --all-namespaces --watch --show-labels -o=wide $params }
-function kgpoallwslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --all-namespaces --watch --show-labels -o=wide $params }
-function kgdepallwslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --watch --show-labels -o=wide $params }
-function kgslallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --all-namespaces --watch -o=wide $params }
-function kgposlallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --all-namespaces --watch -o=wide $params }
-function kgdepslallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --all-namespaces --watch -o=wide $params }
-function kgslwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch -o=wide --all-namespaces $params }
-function kgposlwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --watch -o=wide --all-namespaces $params }
-function kgdepslwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --watch -o=wide --all-namespaces $params }
-function kgslwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch --all-namespaces -o=wide $params }
-function kgposlwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --watch --all-namespaces -o=wide $params }
-function kgdepslwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --watch --all-namespaces -o=wide $params }
-function kgwowideallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=wide --all-namespaces --show-labels $params }
-function kgpowowideallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=wide --all-namespaces --show-labels $params }
-function kgdepwowideallsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide --all-namespaces --show-labels $params }
-function kgwowideslall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=wide --show-labels --all-namespaces $params }
-function kgpowowideslall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=wide --show-labels --all-namespaces $params }
-function kgdepwowideslall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide --show-labels --all-namespaces $params }
-function kgwallowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --all-namespaces -o=wide --show-labels $params }
-function kgpowallowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --all-namespaces -o=wide --show-labels $params }
-function kgdepwallowidesl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --all-namespaces -o=wide --show-labels $params }
-function kgwallslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --all-namespaces --show-labels -o=wide $params }
-function kgpowallslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --all-namespaces --show-labels -o=wide $params }
-function kgdepwallslowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --all-namespaces --show-labels -o=wide $params }
-function kgwslowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --show-labels -o=wide --all-namespaces $params }
-function kgpowslowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --show-labels -o=wide --all-namespaces $params }
-function kgdepwslowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --show-labels -o=wide --all-namespaces $params }
-function kgwslallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --show-labels --all-namespaces -o=wide $params }
-function kgpowslallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --show-labels --all-namespaces -o=wide $params }
-function kgdepwslallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --show-labels --all-namespaces -o=wide $params }
-function kgf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --recursive -f $params }
-function kdf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe --recursive -f $params }
-function krmf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete --recursive -f $params }
-function kgoyamlf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=yaml --recursive -f $params }
-function kgowidef([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide --recursive -f $params }
-function kgojsonf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=json --recursive -f $params }
-function kgslf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --recursive -f $params }
-function kgwf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --recursive -f $params }
-function kgwoyamlf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=yaml --recursive -f $params }
-function kgowideslf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide --show-labels --recursive -f $params }
-function kgslowidef([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels -o=wide --recursive -f $params }
-function kgwowidef([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=wide --recursive -f $params }
-function kgwojsonf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=json --recursive -f $params }
-function kgslwf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch --recursive -f $params }
-function kgwslf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --show-labels --recursive -f $params }
-function kgslwowidef([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch -o=wide --recursive -f $params }
-function kgwowideslf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=wide --show-labels --recursive -f $params }
-function kgwslowidef([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --show-labels -o=wide --recursive -f $params }
-function kgl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -l $params }
-function ksysgl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get -l $params }
-function kdl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe -l $params }
-function ksysdl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe -l $params }
-function krml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete -l $params }
-function ksysrml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete -l $params }
-function kgpol([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -l $params }
-function ksysgpol([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods -l $params }
-function kdpol([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pods -l $params }
-function ksysdpol([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe pods -l $params }
-function krmpol([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pods -l $params }
-function ksysrmpol([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete pods -l $params }
-function kgdepl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -l $params }
-function ksysgdepl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment -l $params }
-function kddepl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe deployment -l $params }
-function ksysddepl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe deployment -l $params }
-function krmdepl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete deployment -l $params }
-function ksysrmdepl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete deployment -l $params }
-function kgsvcl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -l $params }
-function ksysgsvcl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service -l $params }
-function kdsvcl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe service -l $params }
-function ksysdsvcl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe service -l $params }
-function krmsvcl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete service -l $params }
-function ksysrmsvcl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete service -l $params }
-function kgingl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -l $params }
-function ksysgingl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress -l $params }
-function kdingl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe ingress -l $params }
-function ksysdingl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe ingress -l $params }
-function krmingl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ingress -l $params }
-function ksysrmingl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete ingress -l $params }
-function kgcml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -l $params }
-function ksysgcml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap -l $params }
-function kdcml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe configmap -l $params }
-function ksysdcml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe configmap -l $params }
-function krmcml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete configmap -l $params }
-function ksysrmcml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete configmap -l $params }
-function kgsecl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -l $params }
-function ksysgsecl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret -l $params }
-function kdsecl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe secret -l $params }
-function ksysdsecl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system describe secret -l $params }
-function krmsecl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete secret -l $params }
-function ksysrmsecl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system delete secret -l $params }
-function kgnol([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -l $params }
-function kdnol([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe nodes -l $params }
-function kgnsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -l $params }
-function kdnsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe namespaces -l $params }
-function krmnsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete namespaces -l $params }
-function kgoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=yaml -l $params }
-function ksysgoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get -o=yaml -l $params }
-function kgpooyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=yaml -l $params }
-function ksysgpooyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods -o=yaml -l $params }
-function kgdepoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=yaml -l $params }
-function ksysgdepoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment -o=yaml -l $params }
-function kgsvcoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=yaml -l $params }
-function ksysgsvcoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service -o=yaml -l $params }
-function kgingoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=yaml -l $params }
-function ksysgingoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress -o=yaml -l $params }
-function kgcmoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=yaml -l $params }
-function ksysgcmoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap -o=yaml -l $params }
-function kgsecoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=yaml -l $params }
-function ksysgsecoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret -o=yaml -l $params }
-function kgnooyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=yaml -l $params }
-function kgnsoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=yaml -l $params }
-function kgowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide -l $params }
-function ksysgowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get -o=wide -l $params }
-function kgpoowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=wide -l $params }
-function ksysgpoowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods -o=wide -l $params }
-function kgdepowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide -l $params }
-function ksysgdepowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment -o=wide -l $params }
-function kgsvcowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=wide -l $params }
-function ksysgsvcowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service -o=wide -l $params }
-function kgingowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=wide -l $params }
-function ksysgingowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress -o=wide -l $params }
-function kgcmowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=wide -l $params }
-function ksysgcmowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap -o=wide -l $params }
-function kgsecowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=wide -l $params }
-function ksysgsecowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret -o=wide -l $params }
-function kgnoowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=wide -l $params }
-function kgnsowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=wide -l $params }
-function kgojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=json -l $params }
-function ksysgojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get -o=json -l $params }
-function kgpoojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=json -l $params }
-function ksysgpoojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods -o=json -l $params }
-function kgdepojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=json -l $params }
-function ksysgdepojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment -o=json -l $params }
-function kgsvcojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=json -l $params }
-function ksysgsvcojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service -o=json -l $params }
-function kgingojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=json -l $params }
-function ksysgingojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress -o=json -l $params }
-function kgcmojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=json -l $params }
-function ksysgcmojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap -o=json -l $params }
-function kgsecojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=json -l $params }
-function ksysgsecojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret -o=json -l $params }
-function kgnoojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=json -l $params }
-function kgnsojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=json -l $params }
-function kgsll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels -l $params }
-function ksysgsll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --show-labels -l $params }
-function kgposll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels -l $params }
-function ksysgposll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --show-labels -l $params }
-function kgdepsll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels -l $params }
-function ksysgdepsll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --show-labels -l $params }
-function kgwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -l $params }
-function ksysgwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch -l $params }
-function kgpowl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -l $params }
-function ksysgpowl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch -l $params }
-function kgdepwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -l $params }
-function ksysgdepwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch -l $params }
-function kgsvcwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -l $params }
-function ksysgsvcwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service --watch -l $params }
-function kgingwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -l $params }
-function ksysgingwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress --watch -l $params }
-function kgcmwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -l $params }
-function ksysgcmwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap --watch -l $params }
-function kgsecwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -l $params }
-function ksysgsecwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret --watch -l $params }
-function kgnowl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -l $params }
-function kgnswl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -l $params }
-function kgwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=yaml -l $params }
-function ksysgwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch -o=yaml -l $params }
-function kgpowoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=yaml -l $params }
-function ksysgpowoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch -o=yaml -l $params }
-function kgdepwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=yaml -l $params }
-function ksysgdepwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch -o=yaml -l $params }
-function kgsvcwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=yaml -l $params }
-function ksysgsvcwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service --watch -o=yaml -l $params }
-function kgingwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=yaml -l $params }
-function ksysgingwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress --watch -o=yaml -l $params }
-function kgcmwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=yaml -l $params }
-function ksysgcmwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap --watch -o=yaml -l $params }
-function kgsecwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=yaml -l $params }
-function ksysgsecwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret --watch -o=yaml -l $params }
-function kgnowoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=yaml -l $params }
-function kgnswoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=yaml -l $params }
-function kgowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide --show-labels -l $params }
-function ksysgowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get -o=wide --show-labels -l $params }
-function kgpoowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=wide --show-labels -l $params }
-function ksysgpoowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods -o=wide --show-labels -l $params }
-function kgdepowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide --show-labels -l $params }
-function ksysgdepowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment -o=wide --show-labels -l $params }
-function kgslowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels -o=wide -l $params }
-function ksysgslowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --show-labels -o=wide -l $params }
-function kgposlowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels -o=wide -l $params }
-function ksysgposlowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --show-labels -o=wide -l $params }
-function kgdepslowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels -o=wide -l $params }
-function ksysgdepslowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --show-labels -o=wide -l $params }
-function kgwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=wide -l $params }
-function ksysgwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch -o=wide -l $params }
-function kgpowowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=wide -l $params }
-function ksysgpowowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch -o=wide -l $params }
-function kgdepwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide -l $params }
-function ksysgdepwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch -o=wide -l $params }
-function kgsvcwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=wide -l $params }
-function ksysgsvcwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service --watch -o=wide -l $params }
-function kgingwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=wide -l $params }
-function ksysgingwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress --watch -o=wide -l $params }
-function kgcmwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=wide -l $params }
-function ksysgcmwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap --watch -o=wide -l $params }
-function kgsecwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=wide -l $params }
-function ksysgsecwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret --watch -o=wide -l $params }
-function kgnowowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=wide -l $params }
-function kgnswowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=wide -l $params }
-function kgwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=json -l $params }
-function ksysgwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch -o=json -l $params }
-function kgpowojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=json -l $params }
-function ksysgpowojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch -o=json -l $params }
-function kgdepwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=json -l $params }
-function ksysgdepwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch -o=json -l $params }
-function kgsvcwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=json -l $params }
-function ksysgsvcwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get service --watch -o=json -l $params }
-function kgingwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=json -l $params }
-function ksysgingwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get ingress --watch -o=json -l $params }
-function kgcmwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=json -l $params }
-function ksysgcmwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get configmap --watch -o=json -l $params }
-function kgsecwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=json -l $params }
-function ksysgsecwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get secret --watch -o=json -l $params }
-function kgnowojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=json -l $params }
-function kgnswojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=json -l $params }
-function kgslwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch -l $params }
-function ksysgslwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --show-labels --watch -l $params }
-function kgposlwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --watch -l $params }
-function ksysgposlwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --show-labels --watch -l $params }
-function kgdepslwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --watch -l $params }
-function ksysgdepslwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --show-labels --watch -l $params }
-function kgwsll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --show-labels -l $params }
-function ksysgwsll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch --show-labels -l $params }
-function kgpowsll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --show-labels -l $params }
-function ksysgpowsll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch --show-labels -l $params }
-function kgdepwsll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --show-labels -l $params }
-function ksysgdepwsll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch --show-labels -l $params }
-function kgslwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch -o=wide -l $params }
-function ksysgslwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --show-labels --watch -o=wide -l $params }
-function kgposlwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --watch -o=wide -l $params }
-function ksysgposlwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --show-labels --watch -o=wide -l $params }
-function kgdepslwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --watch -o=wide -l $params }
-function ksysgdepslwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --show-labels --watch -o=wide -l $params }
-function kgwowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=wide --show-labels -l $params }
-function ksysgwowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch -o=wide --show-labels -l $params }
-function kgpowowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=wide --show-labels -l $params }
-function ksysgpowowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch -o=wide --show-labels -l $params }
-function kgdepwowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide --show-labels -l $params }
-function ksysgdepwowidesll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch -o=wide --show-labels -l $params }
-function kgwslowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --show-labels -o=wide -l $params }
-function ksysgwslowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get --watch --show-labels -o=wide -l $params }
-function kgpowslowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --show-labels -o=wide -l $params }
-function ksysgpowslowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods --watch --show-labels -o=wide -l $params }
-function kgdepwslowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --show-labels -o=wide -l $params }
-function ksysgdepwslowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch --show-labels -o=wide -l $params }
-function kexn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl exec -i -t --namespace $params }
-function klon([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl logs -f --namespace $params }
-function kpfn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl port-forward --namespace $params }
-function kgn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --namespace $params }
-function kdn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe --namespace $params }
-function krmn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete --namespace $params }
-function kgpon([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --namespace $params }
-function kdpon([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pods --namespace $params }
-function krmpon([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pods --namespace $params }
-function kgdepn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --namespace $params }
-function kddepn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe deployment --namespace $params }
-function krmdepn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete deployment --namespace $params }
-function kgsvcn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --namespace $params }
-function kdsvcn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe service --namespace $params }
-function krmsvcn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete service --namespace $params }
-function kgingn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --namespace $params }
-function kdingn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe ingress --namespace $params }
-function krmingn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ingress --namespace $params }
-function kgcmn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --namespace $params }
-function kdcmn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe configmap --namespace $params }
-function krmcmn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete configmap --namespace $params }
-function kgsecn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --namespace $params }
-function kdsecn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe secret --namespace $params }
-function krmsecn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete secret --namespace $params }
-function kgoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=yaml --namespace $params }
-function kgpooyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=yaml --namespace $params }
-function kgdepoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=yaml --namespace $params }
-function kgsvcoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=yaml --namespace $params }
-function kgingoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=yaml --namespace $params }
-function kgcmoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=yaml --namespace $params }
-function kgsecoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=yaml --namespace $params }
-function kgowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide --namespace $params }
-function kgpoowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=wide --namespace $params }
-function kgdepowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide --namespace $params }
-function kgsvcowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=wide --namespace $params }
-function kgingowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=wide --namespace $params }
-function kgcmowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=wide --namespace $params }
-function kgsecowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=wide --namespace $params }
-function kgojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=json --namespace $params }
-function kgpoojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=json --namespace $params }
-function kgdepojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=json --namespace $params }
-function kgsvcojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=json --namespace $params }
-function kgingojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress -o=json --namespace $params }
-function kgcmojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=json --namespace $params }
-function kgsecojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=json --namespace $params }
-function kgsln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --namespace $params }
-function kgposln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --namespace $params }
-function kgdepsln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --namespace $params }
-function kgwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --namespace $params }
-function kgpown([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --namespace $params }
-function kgdepwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --namespace $params }
-function kgsvcwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --namespace $params }
-function kgingwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch --namespace $params }
-function kgcmwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch --namespace $params }
-function kgsecwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch --namespace $params }
-function kgwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=yaml --namespace $params }
-function kgpowoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=yaml --namespace $params }
-function kgdepwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=yaml --namespace $params }
-function kgsvcwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=yaml --namespace $params }
-function kgingwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=yaml --namespace $params }
-function kgcmwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=yaml --namespace $params }
-function kgsecwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=yaml --namespace $params }
-function kgowidesln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide --show-labels --namespace $params }
-function kgpoowidesln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods -o=wide --show-labels --namespace $params }
-function kgdepowidesln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide --show-labels --namespace $params }
-function kgslowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels -o=wide --namespace $params }
-function kgposlowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels -o=wide --namespace $params }
-function kgdepslowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels -o=wide --namespace $params }
-function kgwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=wide --namespace $params }
-function kgpowowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=wide --namespace $params }
-function kgdepwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide --namespace $params }
-function kgsvcwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=wide --namespace $params }
-function kgingwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=wide --namespace $params }
-function kgcmwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=wide --namespace $params }
-function kgsecwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=wide --namespace $params }
-function kgwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=json --namespace $params }
-function kgpowojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=json --namespace $params }
-function kgdepwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=json --namespace $params }
-function kgsvcwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=json --namespace $params }
-function kgingwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress --watch -o=json --namespace $params }
-function kgcmwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=json --namespace $params }
-function kgsecwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=json --namespace $params }
-function kgslwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch --namespace $params }
-function kgposlwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --watch --namespace $params }
-function kgdepslwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --watch --namespace $params }
-function kgwsln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --show-labels --namespace $params }
-function kgpowsln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --show-labels --namespace $params }
-function kgdepwsln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --show-labels --namespace $params }
-function kgslwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch -o=wide --namespace $params }
-function kgposlwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --show-labels --watch -o=wide --namespace $params }
-function kgdepslwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --show-labels --watch -o=wide --namespace $params }
-function kgwowidesln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=wide --show-labels --namespace $params }
-function kgpowowidesln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch -o=wide --show-labels --namespace $params }
-function kgdepwowidesln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide --show-labels --namespace $params }
-function kgwslowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --show-labels -o=wide --namespace $params }
-function kgpowslowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods --watch --show-labels -o=wide --namespace $params }
-function kgdepwslowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --show-labels -o=wide --namespace $params }
+function k() { & kubectl $args }
+function ksys() { & kubectl --namespace=kube-system $args }
+function ka() { & kubectl apply --recursive -f $args }
+function ksysa() { & kubectl --namespace=kube-system apply --recursive -f $args }
+function kak() { & kubectl apply -k $args }
+function kk() { & kubectl kustomize $args }
+function kex() { & kubectl exec -i -t $args }
+function ksysex() { & kubectl --namespace=kube-system exec -i -t $args }
+function klo() { & kubectl logs -f $args }
+function ksyslo() { & kubectl --namespace=kube-system logs -f $args }
+function klop() { & kubectl logs -f -p $args }
+function ksyslop() { & kubectl --namespace=kube-system logs -f -p $args }
+function kp() { & kubectl proxy $args }
+function kpf() { & kubectl port-forward $args }
+function kg() { & kubectl get $args }
+function ksysg() { & kubectl --namespace=kube-system get $args }
+function kd() { & kubectl describe $args }
+function ksysd() { & kubectl --namespace=kube-system describe $args }
+function krm() { & kubectl delete $args }
+function ksysrm() { & kubectl --namespace=kube-system delete $args }
+function krun() { & kubectl run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t $args }
+function ksysrun() { & kubectl --namespace=kube-system run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t $args }
+function kgpo() { & kubectl get pods $args }
+function ksysgpo() { & kubectl --namespace=kube-system get pods $args }
+function kdpo() { & kubectl describe pods $args }
+function ksysdpo() { & kubectl --namespace=kube-system describe pods $args }
+function krmpo() { & kubectl delete pods $args }
+function ksysrmpo() { & kubectl --namespace=kube-system delete pods $args }
+function kgdep() { & kubectl get deployment $args }
+function ksysgdep() { & kubectl --namespace=kube-system get deployment $args }
+function kddep() { & kubectl describe deployment $args }
+function ksysddep() { & kubectl --namespace=kube-system describe deployment $args }
+function krmdep() { & kubectl delete deployment $args }
+function ksysrmdep() { & kubectl --namespace=kube-system delete deployment $args }
+function kgsvc() { & kubectl get service $args }
+function ksysgsvc() { & kubectl --namespace=kube-system get service $args }
+function kdsvc() { & kubectl describe service $args }
+function ksysdsvc() { & kubectl --namespace=kube-system describe service $args }
+function krmsvc() { & kubectl delete service $args }
+function ksysrmsvc() { & kubectl --namespace=kube-system delete service $args }
+function kging() { & kubectl get ingress $args }
+function ksysging() { & kubectl --namespace=kube-system get ingress $args }
+function kding() { & kubectl describe ingress $args }
+function ksysding() { & kubectl --namespace=kube-system describe ingress $args }
+function krming() { & kubectl delete ingress $args }
+function ksysrming() { & kubectl --namespace=kube-system delete ingress $args }
+function kgcm() { & kubectl get configmap $args }
+function ksysgcm() { & kubectl --namespace=kube-system get configmap $args }
+function kdcm() { & kubectl describe configmap $args }
+function ksysdcm() { & kubectl --namespace=kube-system describe configmap $args }
+function krmcm() { & kubectl delete configmap $args }
+function ksysrmcm() { & kubectl --namespace=kube-system delete configmap $args }
+function kgsec() { & kubectl get secret $args }
+function ksysgsec() { & kubectl --namespace=kube-system get secret $args }
+function kdsec() { & kubectl describe secret $args }
+function ksysdsec() { & kubectl --namespace=kube-system describe secret $args }
+function krmsec() { & kubectl delete secret $args }
+function ksysrmsec() { & kubectl --namespace=kube-system delete secret $args }
+function kgno() { & kubectl get nodes $args }
+function kdno() { & kubectl describe nodes $args }
+function kgns() { & kubectl get namespaces $args }
+function kdns() { & kubectl describe namespaces $args }
+function krmns() { & kubectl delete namespaces $args }
+function kgoyaml() { & kubectl get -o=yaml $args }
+function ksysgoyaml() { & kubectl --namespace=kube-system get -o=yaml $args }
+function kgpooyaml() { & kubectl get pods -o=yaml $args }
+function ksysgpooyaml() { & kubectl --namespace=kube-system get pods -o=yaml $args }
+function kgdepoyaml() { & kubectl get deployment -o=yaml $args }
+function ksysgdepoyaml() { & kubectl --namespace=kube-system get deployment -o=yaml $args }
+function kgsvcoyaml() { & kubectl get service -o=yaml $args }
+function ksysgsvcoyaml() { & kubectl --namespace=kube-system get service -o=yaml $args }
+function kgingoyaml() { & kubectl get ingress -o=yaml $args }
+function ksysgingoyaml() { & kubectl --namespace=kube-system get ingress -o=yaml $args }
+function kgcmoyaml() { & kubectl get configmap -o=yaml $args }
+function ksysgcmoyaml() { & kubectl --namespace=kube-system get configmap -o=yaml $args }
+function kgsecoyaml() { & kubectl get secret -o=yaml $args }
+function ksysgsecoyaml() { & kubectl --namespace=kube-system get secret -o=yaml $args }
+function kgnooyaml() { & kubectl get nodes -o=yaml $args }
+function kgnsoyaml() { & kubectl get namespaces -o=yaml $args }
+function kgowide() { & kubectl get -o=wide $args }
+function ksysgowide() { & kubectl --namespace=kube-system get -o=wide $args }
+function kgpoowide() { & kubectl get pods -o=wide $args }
+function ksysgpoowide() { & kubectl --namespace=kube-system get pods -o=wide $args }
+function kgdepowide() { & kubectl get deployment -o=wide $args }
+function ksysgdepowide() { & kubectl --namespace=kube-system get deployment -o=wide $args }
+function kgsvcowide() { & kubectl get service -o=wide $args }
+function ksysgsvcowide() { & kubectl --namespace=kube-system get service -o=wide $args }
+function kgingowide() { & kubectl get ingress -o=wide $args }
+function ksysgingowide() { & kubectl --namespace=kube-system get ingress -o=wide $args }
+function kgcmowide() { & kubectl get configmap -o=wide $args }
+function ksysgcmowide() { & kubectl --namespace=kube-system get configmap -o=wide $args }
+function kgsecowide() { & kubectl get secret -o=wide $args }
+function ksysgsecowide() { & kubectl --namespace=kube-system get secret -o=wide $args }
+function kgnoowide() { & kubectl get nodes -o=wide $args }
+function kgnsowide() { & kubectl get namespaces -o=wide $args }
+function kgojson() { & kubectl get -o=json $args }
+function ksysgojson() { & kubectl --namespace=kube-system get -o=json $args }
+function kgpoojson() { & kubectl get pods -o=json $args }
+function ksysgpoojson() { & kubectl --namespace=kube-system get pods -o=json $args }
+function kgdepojson() { & kubectl get deployment -o=json $args }
+function ksysgdepojson() { & kubectl --namespace=kube-system get deployment -o=json $args }
+function kgsvcojson() { & kubectl get service -o=json $args }
+function ksysgsvcojson() { & kubectl --namespace=kube-system get service -o=json $args }
+function kgingojson() { & kubectl get ingress -o=json $args }
+function ksysgingojson() { & kubectl --namespace=kube-system get ingress -o=json $args }
+function kgcmojson() { & kubectl get configmap -o=json $args }
+function ksysgcmojson() { & kubectl --namespace=kube-system get configmap -o=json $args }
+function kgsecojson() { & kubectl get secret -o=json $args }
+function ksysgsecojson() { & kubectl --namespace=kube-system get secret -o=json $args }
+function kgnoojson() { & kubectl get nodes -o=json $args }
+function kgnsojson() { & kubectl get namespaces -o=json $args }
+function kgall() { & kubectl get --all-namespaces $args }
+function kdall() { & kubectl describe --all-namespaces $args }
+function kgpoall() { & kubectl get pods --all-namespaces $args }
+function kdpoall() { & kubectl describe pods --all-namespaces $args }
+function kgdepall() { & kubectl get deployment --all-namespaces $args }
+function kddepall() { & kubectl describe deployment --all-namespaces $args }
+function kgsvcall() { & kubectl get service --all-namespaces $args }
+function kdsvcall() { & kubectl describe service --all-namespaces $args }
+function kgingall() { & kubectl get ingress --all-namespaces $args }
+function kdingall() { & kubectl describe ingress --all-namespaces $args }
+function kgcmall() { & kubectl get configmap --all-namespaces $args }
+function kdcmall() { & kubectl describe configmap --all-namespaces $args }
+function kgsecall() { & kubectl get secret --all-namespaces $args }
+function kdsecall() { & kubectl describe secret --all-namespaces $args }
+function kgnsall() { & kubectl get namespaces --all-namespaces $args }
+function kdnsall() { & kubectl describe namespaces --all-namespaces $args }
+function kgsl() { & kubectl get --show-labels $args }
+function ksysgsl() { & kubectl --namespace=kube-system get --show-labels $args }
+function kgposl() { & kubectl get pods --show-labels $args }
+function ksysgposl() { & kubectl --namespace=kube-system get pods --show-labels $args }
+function kgdepsl() { & kubectl get deployment --show-labels $args }
+function ksysgdepsl() { & kubectl --namespace=kube-system get deployment --show-labels $args }
+function krmall() { & kubectl delete --all $args }
+function ksysrmall() { & kubectl --namespace=kube-system delete --all $args }
+function krmpoall() { & kubectl delete pods --all $args }
+function ksysrmpoall() { & kubectl --namespace=kube-system delete pods --all $args }
+function krmdepall() { & kubectl delete deployment --all $args }
+function ksysrmdepall() { & kubectl --namespace=kube-system delete deployment --all $args }
+function krmsvcall() { & kubectl delete service --all $args }
+function ksysrmsvcall() { & kubectl --namespace=kube-system delete service --all $args }
+function krmingall() { & kubectl delete ingress --all $args }
+function ksysrmingall() { & kubectl --namespace=kube-system delete ingress --all $args }
+function krmcmall() { & kubectl delete configmap --all $args }
+function ksysrmcmall() { & kubectl --namespace=kube-system delete configmap --all $args }
+function krmsecall() { & kubectl delete secret --all $args }
+function ksysrmsecall() { & kubectl --namespace=kube-system delete secret --all $args }
+function krmnsall() { & kubectl delete namespaces --all $args }
+function kgw() { & kubectl get --watch $args }
+function ksysgw() { & kubectl --namespace=kube-system get --watch $args }
+function kgpow() { & kubectl get pods --watch $args }
+function ksysgpow() { & kubectl --namespace=kube-system get pods --watch $args }
+function kgdepw() { & kubectl get deployment --watch $args }
+function ksysgdepw() { & kubectl --namespace=kube-system get deployment --watch $args }
+function kgsvcw() { & kubectl get service --watch $args }
+function ksysgsvcw() { & kubectl --namespace=kube-system get service --watch $args }
+function kgingw() { & kubectl get ingress --watch $args }
+function ksysgingw() { & kubectl --namespace=kube-system get ingress --watch $args }
+function kgcmw() { & kubectl get configmap --watch $args }
+function ksysgcmw() { & kubectl --namespace=kube-system get configmap --watch $args }
+function kgsecw() { & kubectl get secret --watch $args }
+function ksysgsecw() { & kubectl --namespace=kube-system get secret --watch $args }
+function kgnow() { & kubectl get nodes --watch $args }
+function kgnsw() { & kubectl get namespaces --watch $args }
+function kgoyamlall() { & kubectl get -o=yaml --all-namespaces $args }
+function kgpooyamlall() { & kubectl get pods -o=yaml --all-namespaces $args }
+function kgdepoyamlall() { & kubectl get deployment -o=yaml --all-namespaces $args }
+function kgsvcoyamlall() { & kubectl get service -o=yaml --all-namespaces $args }
+function kgingoyamlall() { & kubectl get ingress -o=yaml --all-namespaces $args }
+function kgcmoyamlall() { & kubectl get configmap -o=yaml --all-namespaces $args }
+function kgsecoyamlall() { & kubectl get secret -o=yaml --all-namespaces $args }
+function kgnsoyamlall() { & kubectl get namespaces -o=yaml --all-namespaces $args }
+function kgalloyaml() { & kubectl get --all-namespaces -o=yaml $args }
+function kgpoalloyaml() { & kubectl get pods --all-namespaces -o=yaml $args }
+function kgdepalloyaml() { & kubectl get deployment --all-namespaces -o=yaml $args }
+function kgsvcalloyaml() { & kubectl get service --all-namespaces -o=yaml $args }
+function kgingalloyaml() { & kubectl get ingress --all-namespaces -o=yaml $args }
+function kgcmalloyaml() { & kubectl get configmap --all-namespaces -o=yaml $args }
+function kgsecalloyaml() { & kubectl get secret --all-namespaces -o=yaml $args }
+function kgnsalloyaml() { & kubectl get namespaces --all-namespaces -o=yaml $args }
+function kgwoyaml() { & kubectl get --watch -o=yaml $args }
+function ksysgwoyaml() { & kubectl --namespace=kube-system get --watch -o=yaml $args }
+function kgpowoyaml() { & kubectl get pods --watch -o=yaml $args }
+function ksysgpowoyaml() { & kubectl --namespace=kube-system get pods --watch -o=yaml $args }
+function kgdepwoyaml() { & kubectl get deployment --watch -o=yaml $args }
+function ksysgdepwoyaml() { & kubectl --namespace=kube-system get deployment --watch -o=yaml $args }
+function kgsvcwoyaml() { & kubectl get service --watch -o=yaml $args }
+function ksysgsvcwoyaml() { & kubectl --namespace=kube-system get service --watch -o=yaml $args }
+function kgingwoyaml() { & kubectl get ingress --watch -o=yaml $args }
+function ksysgingwoyaml() { & kubectl --namespace=kube-system get ingress --watch -o=yaml $args }
+function kgcmwoyaml() { & kubectl get configmap --watch -o=yaml $args }
+function ksysgcmwoyaml() { & kubectl --namespace=kube-system get configmap --watch -o=yaml $args }
+function kgsecwoyaml() { & kubectl get secret --watch -o=yaml $args }
+function ksysgsecwoyaml() { & kubectl --namespace=kube-system get secret --watch -o=yaml $args }
+function kgnowoyaml() { & kubectl get nodes --watch -o=yaml $args }
+function kgnswoyaml() { & kubectl get namespaces --watch -o=yaml $args }
+function kgowideall() { & kubectl get -o=wide --all-namespaces $args }
+function kgpoowideall() { & kubectl get pods -o=wide --all-namespaces $args }
+function kgdepowideall() { & kubectl get deployment -o=wide --all-namespaces $args }
+function kgsvcowideall() { & kubectl get service -o=wide --all-namespaces $args }
+function kgingowideall() { & kubectl get ingress -o=wide --all-namespaces $args }
+function kgcmowideall() { & kubectl get configmap -o=wide --all-namespaces $args }
+function kgsecowideall() { & kubectl get secret -o=wide --all-namespaces $args }
+function kgnsowideall() { & kubectl get namespaces -o=wide --all-namespaces $args }
+function kgallowide() { & kubectl get --all-namespaces -o=wide $args }
+function kgpoallowide() { & kubectl get pods --all-namespaces -o=wide $args }
+function kgdepallowide() { & kubectl get deployment --all-namespaces -o=wide $args }
+function kgsvcallowide() { & kubectl get service --all-namespaces -o=wide $args }
+function kgingallowide() { & kubectl get ingress --all-namespaces -o=wide $args }
+function kgcmallowide() { & kubectl get configmap --all-namespaces -o=wide $args }
+function kgsecallowide() { & kubectl get secret --all-namespaces -o=wide $args }
+function kgnsallowide() { & kubectl get namespaces --all-namespaces -o=wide $args }
+function kgowidesl() { & kubectl get -o=wide --show-labels $args }
+function ksysgowidesl() { & kubectl --namespace=kube-system get -o=wide --show-labels $args }
+function kgpoowidesl() { & kubectl get pods -o=wide --show-labels $args }
+function ksysgpoowidesl() { & kubectl --namespace=kube-system get pods -o=wide --show-labels $args }
+function kgdepowidesl() { & kubectl get deployment -o=wide --show-labels $args }
+function ksysgdepowidesl() { & kubectl --namespace=kube-system get deployment -o=wide --show-labels $args }
+function kgslowide() { & kubectl get --show-labels -o=wide $args }
+function ksysgslowide() { & kubectl --namespace=kube-system get --show-labels -o=wide $args }
+function kgposlowide() { & kubectl get pods --show-labels -o=wide $args }
+function ksysgposlowide() { & kubectl --namespace=kube-system get pods --show-labels -o=wide $args }
+function kgdepslowide() { & kubectl get deployment --show-labels -o=wide $args }
+function ksysgdepslowide() { & kubectl --namespace=kube-system get deployment --show-labels -o=wide $args }
+function kgwowide() { & kubectl get --watch -o=wide $args }
+function ksysgwowide() { & kubectl --namespace=kube-system get --watch -o=wide $args }
+function kgpowowide() { & kubectl get pods --watch -o=wide $args }
+function ksysgpowowide() { & kubectl --namespace=kube-system get pods --watch -o=wide $args }
+function kgdepwowide() { & kubectl get deployment --watch -o=wide $args }
+function ksysgdepwowide() { & kubectl --namespace=kube-system get deployment --watch -o=wide $args }
+function kgsvcwowide() { & kubectl get service --watch -o=wide $args }
+function ksysgsvcwowide() { & kubectl --namespace=kube-system get service --watch -o=wide $args }
+function kgingwowide() { & kubectl get ingress --watch -o=wide $args }
+function ksysgingwowide() { & kubectl --namespace=kube-system get ingress --watch -o=wide $args }
+function kgcmwowide() { & kubectl get configmap --watch -o=wide $args }
+function ksysgcmwowide() { & kubectl --namespace=kube-system get configmap --watch -o=wide $args }
+function kgsecwowide() { & kubectl get secret --watch -o=wide $args }
+function ksysgsecwowide() { & kubectl --namespace=kube-system get secret --watch -o=wide $args }
+function kgnowowide() { & kubectl get nodes --watch -o=wide $args }
+function kgnswowide() { & kubectl get namespaces --watch -o=wide $args }
+function kgojsonall() { & kubectl get -o=json --all-namespaces $args }
+function kgpoojsonall() { & kubectl get pods -o=json --all-namespaces $args }
+function kgdepojsonall() { & kubectl get deployment -o=json --all-namespaces $args }
+function kgsvcojsonall() { & kubectl get service -o=json --all-namespaces $args }
+function kgingojsonall() { & kubectl get ingress -o=json --all-namespaces $args }
+function kgcmojsonall() { & kubectl get configmap -o=json --all-namespaces $args }
+function kgsecojsonall() { & kubectl get secret -o=json --all-namespaces $args }
+function kgnsojsonall() { & kubectl get namespaces -o=json --all-namespaces $args }
+function kgallojson() { & kubectl get --all-namespaces -o=json $args }
+function kgpoallojson() { & kubectl get pods --all-namespaces -o=json $args }
+function kgdepallojson() { & kubectl get deployment --all-namespaces -o=json $args }
+function kgsvcallojson() { & kubectl get service --all-namespaces -o=json $args }
+function kgingallojson() { & kubectl get ingress --all-namespaces -o=json $args }
+function kgcmallojson() { & kubectl get configmap --all-namespaces -o=json $args }
+function kgsecallojson() { & kubectl get secret --all-namespaces -o=json $args }
+function kgnsallojson() { & kubectl get namespaces --all-namespaces -o=json $args }
+function kgwojson() { & kubectl get --watch -o=json $args }
+function ksysgwojson() { & kubectl --namespace=kube-system get --watch -o=json $args }
+function kgpowojson() { & kubectl get pods --watch -o=json $args }
+function ksysgpowojson() { & kubectl --namespace=kube-system get pods --watch -o=json $args }
+function kgdepwojson() { & kubectl get deployment --watch -o=json $args }
+function ksysgdepwojson() { & kubectl --namespace=kube-system get deployment --watch -o=json $args }
+function kgsvcwojson() { & kubectl get service --watch -o=json $args }
+function ksysgsvcwojson() { & kubectl --namespace=kube-system get service --watch -o=json $args }
+function kgingwojson() { & kubectl get ingress --watch -o=json $args }
+function ksysgingwojson() { & kubectl --namespace=kube-system get ingress --watch -o=json $args }
+function kgcmwojson() { & kubectl get configmap --watch -o=json $args }
+function ksysgcmwojson() { & kubectl --namespace=kube-system get configmap --watch -o=json $args }
+function kgsecwojson() { & kubectl get secret --watch -o=json $args }
+function ksysgsecwojson() { & kubectl --namespace=kube-system get secret --watch -o=json $args }
+function kgnowojson() { & kubectl get nodes --watch -o=json $args }
+function kgnswojson() { & kubectl get namespaces --watch -o=json $args }
+function kgallsl() { & kubectl get --all-namespaces --show-labels $args }
+function kgpoallsl() { & kubectl get pods --all-namespaces --show-labels $args }
+function kgdepallsl() { & kubectl get deployment --all-namespaces --show-labels $args }
+function kgslall() { & kubectl get --show-labels --all-namespaces $args }
+function kgposlall() { & kubectl get pods --show-labels --all-namespaces $args }
+function kgdepslall() { & kubectl get deployment --show-labels --all-namespaces $args }
+function kgallw() { & kubectl get --all-namespaces --watch $args }
+function kgpoallw() { & kubectl get pods --all-namespaces --watch $args }
+function kgdepallw() { & kubectl get deployment --all-namespaces --watch $args }
+function kgsvcallw() { & kubectl get service --all-namespaces --watch $args }
+function kgingallw() { & kubectl get ingress --all-namespaces --watch $args }
+function kgcmallw() { & kubectl get configmap --all-namespaces --watch $args }
+function kgsecallw() { & kubectl get secret --all-namespaces --watch $args }
+function kgnsallw() { & kubectl get namespaces --all-namespaces --watch $args }
+function kgwall() { & kubectl get --watch --all-namespaces $args }
+function kgpowall() { & kubectl get pods --watch --all-namespaces $args }
+function kgdepwall() { & kubectl get deployment --watch --all-namespaces $args }
+function kgsvcwall() { & kubectl get service --watch --all-namespaces $args }
+function kgingwall() { & kubectl get ingress --watch --all-namespaces $args }
+function kgcmwall() { & kubectl get configmap --watch --all-namespaces $args }
+function kgsecwall() { & kubectl get secret --watch --all-namespaces $args }
+function kgnswall() { & kubectl get namespaces --watch --all-namespaces $args }
+function kgslw() { & kubectl get --show-labels --watch $args }
+function ksysgslw() { & kubectl --namespace=kube-system get --show-labels --watch $args }
+function kgposlw() { & kubectl get pods --show-labels --watch $args }
+function ksysgposlw() { & kubectl --namespace=kube-system get pods --show-labels --watch $args }
+function kgdepslw() { & kubectl get deployment --show-labels --watch $args }
+function ksysgdepslw() { & kubectl --namespace=kube-system get deployment --show-labels --watch $args }
+function kgwsl() { & kubectl get --watch --show-labels $args }
+function ksysgwsl() { & kubectl --namespace=kube-system get --watch --show-labels $args }
+function kgpowsl() { & kubectl get pods --watch --show-labels $args }
+function ksysgpowsl() { & kubectl --namespace=kube-system get pods --watch --show-labels $args }
+function kgdepwsl() { & kubectl get deployment --watch --show-labels $args }
+function ksysgdepwsl() { & kubectl --namespace=kube-system get deployment --watch --show-labels $args }
+function kgallwoyaml() { & kubectl get --all-namespaces --watch -o=yaml $args }
+function kgpoallwoyaml() { & kubectl get pods --all-namespaces --watch -o=yaml $args }
+function kgdepallwoyaml() { & kubectl get deployment --all-namespaces --watch -o=yaml $args }
+function kgsvcallwoyaml() { & kubectl get service --all-namespaces --watch -o=yaml $args }
+function kgingallwoyaml() { & kubectl get ingress --all-namespaces --watch -o=yaml $args }
+function kgcmallwoyaml() { & kubectl get configmap --all-namespaces --watch -o=yaml $args }
+function kgsecallwoyaml() { & kubectl get secret --all-namespaces --watch -o=yaml $args }
+function kgnsallwoyaml() { & kubectl get namespaces --all-namespaces --watch -o=yaml $args }
+function kgwoyamlall() { & kubectl get --watch -o=yaml --all-namespaces $args }
+function kgpowoyamlall() { & kubectl get pods --watch -o=yaml --all-namespaces $args }
+function kgdepwoyamlall() { & kubectl get deployment --watch -o=yaml --all-namespaces $args }
+function kgsvcwoyamlall() { & kubectl get service --watch -o=yaml --all-namespaces $args }
+function kgingwoyamlall() { & kubectl get ingress --watch -o=yaml --all-namespaces $args }
+function kgcmwoyamlall() { & kubectl get configmap --watch -o=yaml --all-namespaces $args }
+function kgsecwoyamlall() { & kubectl get secret --watch -o=yaml --all-namespaces $args }
+function kgnswoyamlall() { & kubectl get namespaces --watch -o=yaml --all-namespaces $args }
+function kgwalloyaml() { & kubectl get --watch --all-namespaces -o=yaml $args }
+function kgpowalloyaml() { & kubectl get pods --watch --all-namespaces -o=yaml $args }
+function kgdepwalloyaml() { & kubectl get deployment --watch --all-namespaces -o=yaml $args }
+function kgsvcwalloyaml() { & kubectl get service --watch --all-namespaces -o=yaml $args }
+function kgingwalloyaml() { & kubectl get ingress --watch --all-namespaces -o=yaml $args }
+function kgcmwalloyaml() { & kubectl get configmap --watch --all-namespaces -o=yaml $args }
+function kgsecwalloyaml() { & kubectl get secret --watch --all-namespaces -o=yaml $args }
+function kgnswalloyaml() { & kubectl get namespaces --watch --all-namespaces -o=yaml $args }
+function kgowideallsl() { & kubectl get -o=wide --all-namespaces --show-labels $args }
+function kgpoowideallsl() { & kubectl get pods -o=wide --all-namespaces --show-labels $args }
+function kgdepowideallsl() { & kubectl get deployment -o=wide --all-namespaces --show-labels $args }
+function kgowideslall() { & kubectl get -o=wide --show-labels --all-namespaces $args }
+function kgpoowideslall() { & kubectl get pods -o=wide --show-labels --all-namespaces $args }
+function kgdepowideslall() { & kubectl get deployment -o=wide --show-labels --all-namespaces $args }
+function kgallowidesl() { & kubectl get --all-namespaces -o=wide --show-labels $args }
+function kgpoallowidesl() { & kubectl get pods --all-namespaces -o=wide --show-labels $args }
+function kgdepallowidesl() { & kubectl get deployment --all-namespaces -o=wide --show-labels $args }
+function kgallslowide() { & kubectl get --all-namespaces --show-labels -o=wide $args }
+function kgpoallslowide() { & kubectl get pods --all-namespaces --show-labels -o=wide $args }
+function kgdepallslowide() { & kubectl get deployment --all-namespaces --show-labels -o=wide $args }
+function kgslowideall() { & kubectl get --show-labels -o=wide --all-namespaces $args }
+function kgposlowideall() { & kubectl get pods --show-labels -o=wide --all-namespaces $args }
+function kgdepslowideall() { & kubectl get deployment --show-labels -o=wide --all-namespaces $args }
+function kgslallowide() { & kubectl get --show-labels --all-namespaces -o=wide $args }
+function kgposlallowide() { & kubectl get pods --show-labels --all-namespaces -o=wide $args }
+function kgdepslallowide() { & kubectl get deployment --show-labels --all-namespaces -o=wide $args }
+function kgallwowide() { & kubectl get --all-namespaces --watch -o=wide $args }
+function kgpoallwowide() { & kubectl get pods --all-namespaces --watch -o=wide $args }
+function kgdepallwowide() { & kubectl get deployment --all-namespaces --watch -o=wide $args }
+function kgsvcallwowide() { & kubectl get service --all-namespaces --watch -o=wide $args }
+function kgingallwowide() { & kubectl get ingress --all-namespaces --watch -o=wide $args }
+function kgcmallwowide() { & kubectl get configmap --all-namespaces --watch -o=wide $args }
+function kgsecallwowide() { & kubectl get secret --all-namespaces --watch -o=wide $args }
+function kgnsallwowide() { & kubectl get namespaces --all-namespaces --watch -o=wide $args }
+function kgwowideall() { & kubectl get --watch -o=wide --all-namespaces $args }
+function kgpowowideall() { & kubectl get pods --watch -o=wide --all-namespaces $args }
+function kgdepwowideall() { & kubectl get deployment --watch -o=wide --all-namespaces $args }
+function kgsvcwowideall() { & kubectl get service --watch -o=wide --all-namespaces $args }
+function kgingwowideall() { & kubectl get ingress --watch -o=wide --all-namespaces $args }
+function kgcmwowideall() { & kubectl get configmap --watch -o=wide --all-namespaces $args }
+function kgsecwowideall() { & kubectl get secret --watch -o=wide --all-namespaces $args }
+function kgnswowideall() { & kubectl get namespaces --watch -o=wide --all-namespaces $args }
+function kgwallowide() { & kubectl get --watch --all-namespaces -o=wide $args }
+function kgpowallowide() { & kubectl get pods --watch --all-namespaces -o=wide $args }
+function kgdepwallowide() { & kubectl get deployment --watch --all-namespaces -o=wide $args }
+function kgsvcwallowide() { & kubectl get service --watch --all-namespaces -o=wide $args }
+function kgingwallowide() { & kubectl get ingress --watch --all-namespaces -o=wide $args }
+function kgcmwallowide() { & kubectl get configmap --watch --all-namespaces -o=wide $args }
+function kgsecwallowide() { & kubectl get secret --watch --all-namespaces -o=wide $args }
+function kgnswallowide() { & kubectl get namespaces --watch --all-namespaces -o=wide $args }
+function kgslwowide() { & kubectl get --show-labels --watch -o=wide $args }
+function ksysgslwowide() { & kubectl --namespace=kube-system get --show-labels --watch -o=wide $args }
+function kgposlwowide() { & kubectl get pods --show-labels --watch -o=wide $args }
+function ksysgposlwowide() { & kubectl --namespace=kube-system get pods --show-labels --watch -o=wide $args }
+function kgdepslwowide() { & kubectl get deployment --show-labels --watch -o=wide $args }
+function ksysgdepslwowide() { & kubectl --namespace=kube-system get deployment --show-labels --watch -o=wide $args }
+function kgwowidesl() { & kubectl get --watch -o=wide --show-labels $args }
+function ksysgwowidesl() { & kubectl --namespace=kube-system get --watch -o=wide --show-labels $args }
+function kgpowowidesl() { & kubectl get pods --watch -o=wide --show-labels $args }
+function ksysgpowowidesl() { & kubectl --namespace=kube-system get pods --watch -o=wide --show-labels $args }
+function kgdepwowidesl() { & kubectl get deployment --watch -o=wide --show-labels $args }
+function ksysgdepwowidesl() { & kubectl --namespace=kube-system get deployment --watch -o=wide --show-labels $args }
+function kgwslowide() { & kubectl get --watch --show-labels -o=wide $args }
+function ksysgwslowide() { & kubectl --namespace=kube-system get --watch --show-labels -o=wide $args }
+function kgpowslowide() { & kubectl get pods --watch --show-labels -o=wide $args }
+function ksysgpowslowide() { & kubectl --namespace=kube-system get pods --watch --show-labels -o=wide $args }
+function kgdepwslowide() { & kubectl get deployment --watch --show-labels -o=wide $args }
+function ksysgdepwslowide() { & kubectl --namespace=kube-system get deployment --watch --show-labels -o=wide $args }
+function kgallwojson() { & kubectl get --all-namespaces --watch -o=json $args }
+function kgpoallwojson() { & kubectl get pods --all-namespaces --watch -o=json $args }
+function kgdepallwojson() { & kubectl get deployment --all-namespaces --watch -o=json $args }
+function kgsvcallwojson() { & kubectl get service --all-namespaces --watch -o=json $args }
+function kgingallwojson() { & kubectl get ingress --all-namespaces --watch -o=json $args }
+function kgcmallwojson() { & kubectl get configmap --all-namespaces --watch -o=json $args }
+function kgsecallwojson() { & kubectl get secret --all-namespaces --watch -o=json $args }
+function kgnsallwojson() { & kubectl get namespaces --all-namespaces --watch -o=json $args }
+function kgwojsonall() { & kubectl get --watch -o=json --all-namespaces $args }
+function kgpowojsonall() { & kubectl get pods --watch -o=json --all-namespaces $args }
+function kgdepwojsonall() { & kubectl get deployment --watch -o=json --all-namespaces $args }
+function kgsvcwojsonall() { & kubectl get service --watch -o=json --all-namespaces $args }
+function kgingwojsonall() { & kubectl get ingress --watch -o=json --all-namespaces $args }
+function kgcmwojsonall() { & kubectl get configmap --watch -o=json --all-namespaces $args }
+function kgsecwojsonall() { & kubectl get secret --watch -o=json --all-namespaces $args }
+function kgnswojsonall() { & kubectl get namespaces --watch -o=json --all-namespaces $args }
+function kgwallojson() { & kubectl get --watch --all-namespaces -o=json $args }
+function kgpowallojson() { & kubectl get pods --watch --all-namespaces -o=json $args }
+function kgdepwallojson() { & kubectl get deployment --watch --all-namespaces -o=json $args }
+function kgsvcwallojson() { & kubectl get service --watch --all-namespaces -o=json $args }
+function kgingwallojson() { & kubectl get ingress --watch --all-namespaces -o=json $args }
+function kgcmwallojson() { & kubectl get configmap --watch --all-namespaces -o=json $args }
+function kgsecwallojson() { & kubectl get secret --watch --all-namespaces -o=json $args }
+function kgnswallojson() { & kubectl get namespaces --watch --all-namespaces -o=json $args }
+function kgallslw() { & kubectl get --all-namespaces --show-labels --watch $args }
+function kgpoallslw() { & kubectl get pods --all-namespaces --show-labels --watch $args }
+function kgdepallslw() { & kubectl get deployment --all-namespaces --show-labels --watch $args }
+function kgallwsl() { & kubectl get --all-namespaces --watch --show-labels $args }
+function kgpoallwsl() { & kubectl get pods --all-namespaces --watch --show-labels $args }
+function kgdepallwsl() { & kubectl get deployment --all-namespaces --watch --show-labels $args }
+function kgslallw() { & kubectl get --show-labels --all-namespaces --watch $args }
+function kgposlallw() { & kubectl get pods --show-labels --all-namespaces --watch $args }
+function kgdepslallw() { & kubectl get deployment --show-labels --all-namespaces --watch $args }
+function kgslwall() { & kubectl get --show-labels --watch --all-namespaces $args }
+function kgposlwall() { & kubectl get pods --show-labels --watch --all-namespaces $args }
+function kgdepslwall() { & kubectl get deployment --show-labels --watch --all-namespaces $args }
+function kgwallsl() { & kubectl get --watch --all-namespaces --show-labels $args }
+function kgpowallsl() { & kubectl get pods --watch --all-namespaces --show-labels $args }
+function kgdepwallsl() { & kubectl get deployment --watch --all-namespaces --show-labels $args }
+function kgwslall() { & kubectl get --watch --show-labels --all-namespaces $args }
+function kgpowslall() { & kubectl get pods --watch --show-labels --all-namespaces $args }
+function kgdepwslall() { & kubectl get deployment --watch --show-labels --all-namespaces $args }
+function kgallslwowide() { & kubectl get --all-namespaces --show-labels --watch -o=wide $args }
+function kgpoallslwowide() { & kubectl get pods --all-namespaces --show-labels --watch -o=wide $args }
+function kgdepallslwowide() { & kubectl get deployment --all-namespaces --show-labels --watch -o=wide $args }
+function kgallwowidesl() { & kubectl get --all-namespaces --watch -o=wide --show-labels $args }
+function kgpoallwowidesl() { & kubectl get pods --all-namespaces --watch -o=wide --show-labels $args }
+function kgdepallwowidesl() { & kubectl get deployment --all-namespaces --watch -o=wide --show-labels $args }
+function kgallwslowide() { & kubectl get --all-namespaces --watch --show-labels -o=wide $args }
+function kgpoallwslowide() { & kubectl get pods --all-namespaces --watch --show-labels -o=wide $args }
+function kgdepallwslowide() { & kubectl get deployment --all-namespaces --watch --show-labels -o=wide $args }
+function kgslallwowide() { & kubectl get --show-labels --all-namespaces --watch -o=wide $args }
+function kgposlallwowide() { & kubectl get pods --show-labels --all-namespaces --watch -o=wide $args }
+function kgdepslallwowide() { & kubectl get deployment --show-labels --all-namespaces --watch -o=wide $args }
+function kgslwowideall() { & kubectl get --show-labels --watch -o=wide --all-namespaces $args }
+function kgposlwowideall() { & kubectl get pods --show-labels --watch -o=wide --all-namespaces $args }
+function kgdepslwowideall() { & kubectl get deployment --show-labels --watch -o=wide --all-namespaces $args }
+function kgslwallowide() { & kubectl get --show-labels --watch --all-namespaces -o=wide $args }
+function kgposlwallowide() { & kubectl get pods --show-labels --watch --all-namespaces -o=wide $args }
+function kgdepslwallowide() { & kubectl get deployment --show-labels --watch --all-namespaces -o=wide $args }
+function kgwowideallsl() { & kubectl get --watch -o=wide --all-namespaces --show-labels $args }
+function kgpowowideallsl() { & kubectl get pods --watch -o=wide --all-namespaces --show-labels $args }
+function kgdepwowideallsl() { & kubectl get deployment --watch -o=wide --all-namespaces --show-labels $args }
+function kgwowideslall() { & kubectl get --watch -o=wide --show-labels --all-namespaces $args }
+function kgpowowideslall() { & kubectl get pods --watch -o=wide --show-labels --all-namespaces $args }
+function kgdepwowideslall() { & kubectl get deployment --watch -o=wide --show-labels --all-namespaces $args }
+function kgwallowidesl() { & kubectl get --watch --all-namespaces -o=wide --show-labels $args }
+function kgpowallowidesl() { & kubectl get pods --watch --all-namespaces -o=wide --show-labels $args }
+function kgdepwallowidesl() { & kubectl get deployment --watch --all-namespaces -o=wide --show-labels $args }
+function kgwallslowide() { & kubectl get --watch --all-namespaces --show-labels -o=wide $args }
+function kgpowallslowide() { & kubectl get pods --watch --all-namespaces --show-labels -o=wide $args }
+function kgdepwallslowide() { & kubectl get deployment --watch --all-namespaces --show-labels -o=wide $args }
+function kgwslowideall() { & kubectl get --watch --show-labels -o=wide --all-namespaces $args }
+function kgpowslowideall() { & kubectl get pods --watch --show-labels -o=wide --all-namespaces $args }
+function kgdepwslowideall() { & kubectl get deployment --watch --show-labels -o=wide --all-namespaces $args }
+function kgwslallowide() { & kubectl get --watch --show-labels --all-namespaces -o=wide $args }
+function kgpowslallowide() { & kubectl get pods --watch --show-labels --all-namespaces -o=wide $args }
+function kgdepwslallowide() { & kubectl get deployment --watch --show-labels --all-namespaces -o=wide $args }
+function kgf() { & kubectl get --recursive -f $args }
+function kdf() { & kubectl describe --recursive -f $args }
+function krmf() { & kubectl delete --recursive -f $args }
+function kgoyamlf() { & kubectl get -o=yaml --recursive -f $args }
+function kgowidef() { & kubectl get -o=wide --recursive -f $args }
+function kgojsonf() { & kubectl get -o=json --recursive -f $args }
+function kgslf() { & kubectl get --show-labels --recursive -f $args }
+function kgwf() { & kubectl get --watch --recursive -f $args }
+function kgwoyamlf() { & kubectl get --watch -o=yaml --recursive -f $args }
+function kgowideslf() { & kubectl get -o=wide --show-labels --recursive -f $args }
+function kgslowidef() { & kubectl get --show-labels -o=wide --recursive -f $args }
+function kgwowidef() { & kubectl get --watch -o=wide --recursive -f $args }
+function kgwojsonf() { & kubectl get --watch -o=json --recursive -f $args }
+function kgslwf() { & kubectl get --show-labels --watch --recursive -f $args }
+function kgwslf() { & kubectl get --watch --show-labels --recursive -f $args }
+function kgslwowidef() { & kubectl get --show-labels --watch -o=wide --recursive -f $args }
+function kgwowideslf() { & kubectl get --watch -o=wide --show-labels --recursive -f $args }
+function kgwslowidef() { & kubectl get --watch --show-labels -o=wide --recursive -f $args }
+function kgl() { & kubectl get -l $args }
+function ksysgl() { & kubectl --namespace=kube-system get -l $args }
+function kdl() { & kubectl describe -l $args }
+function ksysdl() { & kubectl --namespace=kube-system describe -l $args }
+function krml() { & kubectl delete -l $args }
+function ksysrml() { & kubectl --namespace=kube-system delete -l $args }
+function kgpol() { & kubectl get pods -l $args }
+function ksysgpol() { & kubectl --namespace=kube-system get pods -l $args }
+function kdpol() { & kubectl describe pods -l $args }
+function ksysdpol() { & kubectl --namespace=kube-system describe pods -l $args }
+function krmpol() { & kubectl delete pods -l $args }
+function ksysrmpol() { & kubectl --namespace=kube-system delete pods -l $args }
+function kgdepl() { & kubectl get deployment -l $args }
+function ksysgdepl() { & kubectl --namespace=kube-system get deployment -l $args }
+function kddepl() { & kubectl describe deployment -l $args }
+function ksysddepl() { & kubectl --namespace=kube-system describe deployment -l $args }
+function krmdepl() { & kubectl delete deployment -l $args }
+function ksysrmdepl() { & kubectl --namespace=kube-system delete deployment -l $args }
+function kgsvcl() { & kubectl get service -l $args }
+function ksysgsvcl() { & kubectl --namespace=kube-system get service -l $args }
+function kdsvcl() { & kubectl describe service -l $args }
+function ksysdsvcl() { & kubectl --namespace=kube-system describe service -l $args }
+function krmsvcl() { & kubectl delete service -l $args }
+function ksysrmsvcl() { & kubectl --namespace=kube-system delete service -l $args }
+function kgingl() { & kubectl get ingress -l $args }
+function ksysgingl() { & kubectl --namespace=kube-system get ingress -l $args }
+function kdingl() { & kubectl describe ingress -l $args }
+function ksysdingl() { & kubectl --namespace=kube-system describe ingress -l $args }
+function krmingl() { & kubectl delete ingress -l $args }
+function ksysrmingl() { & kubectl --namespace=kube-system delete ingress -l $args }
+function kgcml() { & kubectl get configmap -l $args }
+function ksysgcml() { & kubectl --namespace=kube-system get configmap -l $args }
+function kdcml() { & kubectl describe configmap -l $args }
+function ksysdcml() { & kubectl --namespace=kube-system describe configmap -l $args }
+function krmcml() { & kubectl delete configmap -l $args }
+function ksysrmcml() { & kubectl --namespace=kube-system delete configmap -l $args }
+function kgsecl() { & kubectl get secret -l $args }
+function ksysgsecl() { & kubectl --namespace=kube-system get secret -l $args }
+function kdsecl() { & kubectl describe secret -l $args }
+function ksysdsecl() { & kubectl --namespace=kube-system describe secret -l $args }
+function krmsecl() { & kubectl delete secret -l $args }
+function ksysrmsecl() { & kubectl --namespace=kube-system delete secret -l $args }
+function kgnol() { & kubectl get nodes -l $args }
+function kdnol() { & kubectl describe nodes -l $args }
+function kgnsl() { & kubectl get namespaces -l $args }
+function kdnsl() { & kubectl describe namespaces -l $args }
+function krmnsl() { & kubectl delete namespaces -l $args }
+function kgoyamll() { & kubectl get -o=yaml -l $args }
+function ksysgoyamll() { & kubectl --namespace=kube-system get -o=yaml -l $args }
+function kgpooyamll() { & kubectl get pods -o=yaml -l $args }
+function ksysgpooyamll() { & kubectl --namespace=kube-system get pods -o=yaml -l $args }
+function kgdepoyamll() { & kubectl get deployment -o=yaml -l $args }
+function ksysgdepoyamll() { & kubectl --namespace=kube-system get deployment -o=yaml -l $args }
+function kgsvcoyamll() { & kubectl get service -o=yaml -l $args }
+function ksysgsvcoyamll() { & kubectl --namespace=kube-system get service -o=yaml -l $args }
+function kgingoyamll() { & kubectl get ingress -o=yaml -l $args }
+function ksysgingoyamll() { & kubectl --namespace=kube-system get ingress -o=yaml -l $args }
+function kgcmoyamll() { & kubectl get configmap -o=yaml -l $args }
+function ksysgcmoyamll() { & kubectl --namespace=kube-system get configmap -o=yaml -l $args }
+function kgsecoyamll() { & kubectl get secret -o=yaml -l $args }
+function ksysgsecoyamll() { & kubectl --namespace=kube-system get secret -o=yaml -l $args }
+function kgnooyamll() { & kubectl get nodes -o=yaml -l $args }
+function kgnsoyamll() { & kubectl get namespaces -o=yaml -l $args }
+function kgowidel() { & kubectl get -o=wide -l $args }
+function ksysgowidel() { & kubectl --namespace=kube-system get -o=wide -l $args }
+function kgpoowidel() { & kubectl get pods -o=wide -l $args }
+function ksysgpoowidel() { & kubectl --namespace=kube-system get pods -o=wide -l $args }
+function kgdepowidel() { & kubectl get deployment -o=wide -l $args }
+function ksysgdepowidel() { & kubectl --namespace=kube-system get deployment -o=wide -l $args }
+function kgsvcowidel() { & kubectl get service -o=wide -l $args }
+function ksysgsvcowidel() { & kubectl --namespace=kube-system get service -o=wide -l $args }
+function kgingowidel() { & kubectl get ingress -o=wide -l $args }
+function ksysgingowidel() { & kubectl --namespace=kube-system get ingress -o=wide -l $args }
+function kgcmowidel() { & kubectl get configmap -o=wide -l $args }
+function ksysgcmowidel() { & kubectl --namespace=kube-system get configmap -o=wide -l $args }
+function kgsecowidel() { & kubectl get secret -o=wide -l $args }
+function ksysgsecowidel() { & kubectl --namespace=kube-system get secret -o=wide -l $args }
+function kgnoowidel() { & kubectl get nodes -o=wide -l $args }
+function kgnsowidel() { & kubectl get namespaces -o=wide -l $args }
+function kgojsonl() { & kubectl get -o=json -l $args }
+function ksysgojsonl() { & kubectl --namespace=kube-system get -o=json -l $args }
+function kgpoojsonl() { & kubectl get pods -o=json -l $args }
+function ksysgpoojsonl() { & kubectl --namespace=kube-system get pods -o=json -l $args }
+function kgdepojsonl() { & kubectl get deployment -o=json -l $args }
+function ksysgdepojsonl() { & kubectl --namespace=kube-system get deployment -o=json -l $args }
+function kgsvcojsonl() { & kubectl get service -o=json -l $args }
+function ksysgsvcojsonl() { & kubectl --namespace=kube-system get service -o=json -l $args }
+function kgingojsonl() { & kubectl get ingress -o=json -l $args }
+function ksysgingojsonl() { & kubectl --namespace=kube-system get ingress -o=json -l $args }
+function kgcmojsonl() { & kubectl get configmap -o=json -l $args }
+function ksysgcmojsonl() { & kubectl --namespace=kube-system get configmap -o=json -l $args }
+function kgsecojsonl() { & kubectl get secret -o=json -l $args }
+function ksysgsecojsonl() { & kubectl --namespace=kube-system get secret -o=json -l $args }
+function kgnoojsonl() { & kubectl get nodes -o=json -l $args }
+function kgnsojsonl() { & kubectl get namespaces -o=json -l $args }
+function kgsll() { & kubectl get --show-labels -l $args }
+function ksysgsll() { & kubectl --namespace=kube-system get --show-labels -l $args }
+function kgposll() { & kubectl get pods --show-labels -l $args }
+function ksysgposll() { & kubectl --namespace=kube-system get pods --show-labels -l $args }
+function kgdepsll() { & kubectl get deployment --show-labels -l $args }
+function ksysgdepsll() { & kubectl --namespace=kube-system get deployment --show-labels -l $args }
+function kgwl() { & kubectl get --watch -l $args }
+function ksysgwl() { & kubectl --namespace=kube-system get --watch -l $args }
+function kgpowl() { & kubectl get pods --watch -l $args }
+function ksysgpowl() { & kubectl --namespace=kube-system get pods --watch -l $args }
+function kgdepwl() { & kubectl get deployment --watch -l $args }
+function ksysgdepwl() { & kubectl --namespace=kube-system get deployment --watch -l $args }
+function kgsvcwl() { & kubectl get service --watch -l $args }
+function ksysgsvcwl() { & kubectl --namespace=kube-system get service --watch -l $args }
+function kgingwl() { & kubectl get ingress --watch -l $args }
+function ksysgingwl() { & kubectl --namespace=kube-system get ingress --watch -l $args }
+function kgcmwl() { & kubectl get configmap --watch -l $args }
+function ksysgcmwl() { & kubectl --namespace=kube-system get configmap --watch -l $args }
+function kgsecwl() { & kubectl get secret --watch -l $args }
+function ksysgsecwl() { & kubectl --namespace=kube-system get secret --watch -l $args }
+function kgnowl() { & kubectl get nodes --watch -l $args }
+function kgnswl() { & kubectl get namespaces --watch -l $args }
+function kgwoyamll() { & kubectl get --watch -o=yaml -l $args }
+function ksysgwoyamll() { & kubectl --namespace=kube-system get --watch -o=yaml -l $args }
+function kgpowoyamll() { & kubectl get pods --watch -o=yaml -l $args }
+function ksysgpowoyamll() { & kubectl --namespace=kube-system get pods --watch -o=yaml -l $args }
+function kgdepwoyamll() { & kubectl get deployment --watch -o=yaml -l $args }
+function ksysgdepwoyamll() { & kubectl --namespace=kube-system get deployment --watch -o=yaml -l $args }
+function kgsvcwoyamll() { & kubectl get service --watch -o=yaml -l $args }
+function ksysgsvcwoyamll() { & kubectl --namespace=kube-system get service --watch -o=yaml -l $args }
+function kgingwoyamll() { & kubectl get ingress --watch -o=yaml -l $args }
+function ksysgingwoyamll() { & kubectl --namespace=kube-system get ingress --watch -o=yaml -l $args }
+function kgcmwoyamll() { & kubectl get configmap --watch -o=yaml -l $args }
+function ksysgcmwoyamll() { & kubectl --namespace=kube-system get configmap --watch -o=yaml -l $args }
+function kgsecwoyamll() { & kubectl get secret --watch -o=yaml -l $args }
+function ksysgsecwoyamll() { & kubectl --namespace=kube-system get secret --watch -o=yaml -l $args }
+function kgnowoyamll() { & kubectl get nodes --watch -o=yaml -l $args }
+function kgnswoyamll() { & kubectl get namespaces --watch -o=yaml -l $args }
+function kgowidesll() { & kubectl get -o=wide --show-labels -l $args }
+function ksysgowidesll() { & kubectl --namespace=kube-system get -o=wide --show-labels -l $args }
+function kgpoowidesll() { & kubectl get pods -o=wide --show-labels -l $args }
+function ksysgpoowidesll() { & kubectl --namespace=kube-system get pods -o=wide --show-labels -l $args }
+function kgdepowidesll() { & kubectl get deployment -o=wide --show-labels -l $args }
+function ksysgdepowidesll() { & kubectl --namespace=kube-system get deployment -o=wide --show-labels -l $args }
+function kgslowidel() { & kubectl get --show-labels -o=wide -l $args }
+function ksysgslowidel() { & kubectl --namespace=kube-system get --show-labels -o=wide -l $args }
+function kgposlowidel() { & kubectl get pods --show-labels -o=wide -l $args }
+function ksysgposlowidel() { & kubectl --namespace=kube-system get pods --show-labels -o=wide -l $args }
+function kgdepslowidel() { & kubectl get deployment --show-labels -o=wide -l $args }
+function ksysgdepslowidel() { & kubectl --namespace=kube-system get deployment --show-labels -o=wide -l $args }
+function kgwowidel() { & kubectl get --watch -o=wide -l $args }
+function ksysgwowidel() { & kubectl --namespace=kube-system get --watch -o=wide -l $args }
+function kgpowowidel() { & kubectl get pods --watch -o=wide -l $args }
+function ksysgpowowidel() { & kubectl --namespace=kube-system get pods --watch -o=wide -l $args }
+function kgdepwowidel() { & kubectl get deployment --watch -o=wide -l $args }
+function ksysgdepwowidel() { & kubectl --namespace=kube-system get deployment --watch -o=wide -l $args }
+function kgsvcwowidel() { & kubectl get service --watch -o=wide -l $args }
+function ksysgsvcwowidel() { & kubectl --namespace=kube-system get service --watch -o=wide -l $args }
+function kgingwowidel() { & kubectl get ingress --watch -o=wide -l $args }
+function ksysgingwowidel() { & kubectl --namespace=kube-system get ingress --watch -o=wide -l $args }
+function kgcmwowidel() { & kubectl get configmap --watch -o=wide -l $args }
+function ksysgcmwowidel() { & kubectl --namespace=kube-system get configmap --watch -o=wide -l $args }
+function kgsecwowidel() { & kubectl get secret --watch -o=wide -l $args }
+function ksysgsecwowidel() { & kubectl --namespace=kube-system get secret --watch -o=wide -l $args }
+function kgnowowidel() { & kubectl get nodes --watch -o=wide -l $args }
+function kgnswowidel() { & kubectl get namespaces --watch -o=wide -l $args }
+function kgwojsonl() { & kubectl get --watch -o=json -l $args }
+function ksysgwojsonl() { & kubectl --namespace=kube-system get --watch -o=json -l $args }
+function kgpowojsonl() { & kubectl get pods --watch -o=json -l $args }
+function ksysgpowojsonl() { & kubectl --namespace=kube-system get pods --watch -o=json -l $args }
+function kgdepwojsonl() { & kubectl get deployment --watch -o=json -l $args }
+function ksysgdepwojsonl() { & kubectl --namespace=kube-system get deployment --watch -o=json -l $args }
+function kgsvcwojsonl() { & kubectl get service --watch -o=json -l $args }
+function ksysgsvcwojsonl() { & kubectl --namespace=kube-system get service --watch -o=json -l $args }
+function kgingwojsonl() { & kubectl get ingress --watch -o=json -l $args }
+function ksysgingwojsonl() { & kubectl --namespace=kube-system get ingress --watch -o=json -l $args }
+function kgcmwojsonl() { & kubectl get configmap --watch -o=json -l $args }
+function ksysgcmwojsonl() { & kubectl --namespace=kube-system get configmap --watch -o=json -l $args }
+function kgsecwojsonl() { & kubectl get secret --watch -o=json -l $args }
+function ksysgsecwojsonl() { & kubectl --namespace=kube-system get secret --watch -o=json -l $args }
+function kgnowojsonl() { & kubectl get nodes --watch -o=json -l $args }
+function kgnswojsonl() { & kubectl get namespaces --watch -o=json -l $args }
+function kgslwl() { & kubectl get --show-labels --watch -l $args }
+function ksysgslwl() { & kubectl --namespace=kube-system get --show-labels --watch -l $args }
+function kgposlwl() { & kubectl get pods --show-labels --watch -l $args }
+function ksysgposlwl() { & kubectl --namespace=kube-system get pods --show-labels --watch -l $args }
+function kgdepslwl() { & kubectl get deployment --show-labels --watch -l $args }
+function ksysgdepslwl() { & kubectl --namespace=kube-system get deployment --show-labels --watch -l $args }
+function kgwsll() { & kubectl get --watch --show-labels -l $args }
+function ksysgwsll() { & kubectl --namespace=kube-system get --watch --show-labels -l $args }
+function kgpowsll() { & kubectl get pods --watch --show-labels -l $args }
+function ksysgpowsll() { & kubectl --namespace=kube-system get pods --watch --show-labels -l $args }
+function kgdepwsll() { & kubectl get deployment --watch --show-labels -l $args }
+function ksysgdepwsll() { & kubectl --namespace=kube-system get deployment --watch --show-labels -l $args }
+function kgslwowidel() { & kubectl get --show-labels --watch -o=wide -l $args }
+function ksysgslwowidel() { & kubectl --namespace=kube-system get --show-labels --watch -o=wide -l $args }
+function kgposlwowidel() { & kubectl get pods --show-labels --watch -o=wide -l $args }
+function ksysgposlwowidel() { & kubectl --namespace=kube-system get pods --show-labels --watch -o=wide -l $args }
+function kgdepslwowidel() { & kubectl get deployment --show-labels --watch -o=wide -l $args }
+function ksysgdepslwowidel() { & kubectl --namespace=kube-system get deployment --show-labels --watch -o=wide -l $args }
+function kgwowidesll() { & kubectl get --watch -o=wide --show-labels -l $args }
+function ksysgwowidesll() { & kubectl --namespace=kube-system get --watch -o=wide --show-labels -l $args }
+function kgpowowidesll() { & kubectl get pods --watch -o=wide --show-labels -l $args }
+function ksysgpowowidesll() { & kubectl --namespace=kube-system get pods --watch -o=wide --show-labels -l $args }
+function kgdepwowidesll() { & kubectl get deployment --watch -o=wide --show-labels -l $args }
+function ksysgdepwowidesll() { & kubectl --namespace=kube-system get deployment --watch -o=wide --show-labels -l $args }
+function kgwslowidel() { & kubectl get --watch --show-labels -o=wide -l $args }
+function ksysgwslowidel() { & kubectl --namespace=kube-system get --watch --show-labels -o=wide -l $args }
+function kgpowslowidel() { & kubectl get pods --watch --show-labels -o=wide -l $args }
+function ksysgpowslowidel() { & kubectl --namespace=kube-system get pods --watch --show-labels -o=wide -l $args }
+function kgdepwslowidel() { & kubectl get deployment --watch --show-labels -o=wide -l $args }
+function ksysgdepwslowidel() { & kubectl --namespace=kube-system get deployment --watch --show-labels -o=wide -l $args }
+function kexn() { & kubectl exec -i -t --namespace $args }
+function klon() { & kubectl logs -f --namespace $args }
+function kpfn() { & kubectl port-forward --namespace $args }
+function kgn() { & kubectl get --namespace $args }
+function kdn() { & kubectl describe --namespace $args }
+function krmn() { & kubectl delete --namespace $args }
+function kgpon() { & kubectl get pods --namespace $args }
+function kdpon() { & kubectl describe pods --namespace $args }
+function krmpon() { & kubectl delete pods --namespace $args }
+function kgdepn() { & kubectl get deployment --namespace $args }
+function kddepn() { & kubectl describe deployment --namespace $args }
+function krmdepn() { & kubectl delete deployment --namespace $args }
+function kgsvcn() { & kubectl get service --namespace $args }
+function kdsvcn() { & kubectl describe service --namespace $args }
+function krmsvcn() { & kubectl delete service --namespace $args }
+function kgingn() { & kubectl get ingress --namespace $args }
+function kdingn() { & kubectl describe ingress --namespace $args }
+function krmingn() { & kubectl delete ingress --namespace $args }
+function kgcmn() { & kubectl get configmap --namespace $args }
+function kdcmn() { & kubectl describe configmap --namespace $args }
+function krmcmn() { & kubectl delete configmap --namespace $args }
+function kgsecn() { & kubectl get secret --namespace $args }
+function kdsecn() { & kubectl describe secret --namespace $args }
+function krmsecn() { & kubectl delete secret --namespace $args }
+function kgoyamln() { & kubectl get -o=yaml --namespace $args }
+function kgpooyamln() { & kubectl get pods -o=yaml --namespace $args }
+function kgdepoyamln() { & kubectl get deployment -o=yaml --namespace $args }
+function kgsvcoyamln() { & kubectl get service -o=yaml --namespace $args }
+function kgingoyamln() { & kubectl get ingress -o=yaml --namespace $args }
+function kgcmoyamln() { & kubectl get configmap -o=yaml --namespace $args }
+function kgsecoyamln() { & kubectl get secret -o=yaml --namespace $args }
+function kgowiden() { & kubectl get -o=wide --namespace $args }
+function kgpoowiden() { & kubectl get pods -o=wide --namespace $args }
+function kgdepowiden() { & kubectl get deployment -o=wide --namespace $args }
+function kgsvcowiden() { & kubectl get service -o=wide --namespace $args }
+function kgingowiden() { & kubectl get ingress -o=wide --namespace $args }
+function kgcmowiden() { & kubectl get configmap -o=wide --namespace $args }
+function kgsecowiden() { & kubectl get secret -o=wide --namespace $args }
+function kgojsonn() { & kubectl get -o=json --namespace $args }
+function kgpoojsonn() { & kubectl get pods -o=json --namespace $args }
+function kgdepojsonn() { & kubectl get deployment -o=json --namespace $args }
+function kgsvcojsonn() { & kubectl get service -o=json --namespace $args }
+function kgingojsonn() { & kubectl get ingress -o=json --namespace $args }
+function kgcmojsonn() { & kubectl get configmap -o=json --namespace $args }
+function kgsecojsonn() { & kubectl get secret -o=json --namespace $args }
+function kgsln() { & kubectl get --show-labels --namespace $args }
+function kgposln() { & kubectl get pods --show-labels --namespace $args }
+function kgdepsln() { & kubectl get deployment --show-labels --namespace $args }
+function kgwn() { & kubectl get --watch --namespace $args }
+function kgpown() { & kubectl get pods --watch --namespace $args }
+function kgdepwn() { & kubectl get deployment --watch --namespace $args }
+function kgsvcwn() { & kubectl get service --watch --namespace $args }
+function kgingwn() { & kubectl get ingress --watch --namespace $args }
+function kgcmwn() { & kubectl get configmap --watch --namespace $args }
+function kgsecwn() { & kubectl get secret --watch --namespace $args }
+function kgwoyamln() { & kubectl get --watch -o=yaml --namespace $args }
+function kgpowoyamln() { & kubectl get pods --watch -o=yaml --namespace $args }
+function kgdepwoyamln() { & kubectl get deployment --watch -o=yaml --namespace $args }
+function kgsvcwoyamln() { & kubectl get service --watch -o=yaml --namespace $args }
+function kgingwoyamln() { & kubectl get ingress --watch -o=yaml --namespace $args }
+function kgcmwoyamln() { & kubectl get configmap --watch -o=yaml --namespace $args }
+function kgsecwoyamln() { & kubectl get secret --watch -o=yaml --namespace $args }
+function kgowidesln() { & kubectl get -o=wide --show-labels --namespace $args }
+function kgpoowidesln() { & kubectl get pods -o=wide --show-labels --namespace $args }
+function kgdepowidesln() { & kubectl get deployment -o=wide --show-labels --namespace $args }
+function kgslowiden() { & kubectl get --show-labels -o=wide --namespace $args }
+function kgposlowiden() { & kubectl get pods --show-labels -o=wide --namespace $args }
+function kgdepslowiden() { & kubectl get deployment --show-labels -o=wide --namespace $args }
+function kgwowiden() { & kubectl get --watch -o=wide --namespace $args }
+function kgpowowiden() { & kubectl get pods --watch -o=wide --namespace $args }
+function kgdepwowiden() { & kubectl get deployment --watch -o=wide --namespace $args }
+function kgsvcwowiden() { & kubectl get service --watch -o=wide --namespace $args }
+function kgingwowiden() { & kubectl get ingress --watch -o=wide --namespace $args }
+function kgcmwowiden() { & kubectl get configmap --watch -o=wide --namespace $args }
+function kgsecwowiden() { & kubectl get secret --watch -o=wide --namespace $args }
+function kgwojsonn() { & kubectl get --watch -o=json --namespace $args }
+function kgpowojsonn() { & kubectl get pods --watch -o=json --namespace $args }
+function kgdepwojsonn() { & kubectl get deployment --watch -o=json --namespace $args }
+function kgsvcwojsonn() { & kubectl get service --watch -o=json --namespace $args }
+function kgingwojsonn() { & kubectl get ingress --watch -o=json --namespace $args }
+function kgcmwojsonn() { & kubectl get configmap --watch -o=json --namespace $args }
+function kgsecwojsonn() { & kubectl get secret --watch -o=json --namespace $args }
+function kgslwn() { & kubectl get --show-labels --watch --namespace $args }
+function kgposlwn() { & kubectl get pods --show-labels --watch --namespace $args }
+function kgdepslwn() { & kubectl get deployment --show-labels --watch --namespace $args }
+function kgwsln() { & kubectl get --watch --show-labels --namespace $args }
+function kgpowsln() { & kubectl get pods --watch --show-labels --namespace $args }
+function kgdepwsln() { & kubectl get deployment --watch --show-labels --namespace $args }
+function kgslwowiden() { & kubectl get --show-labels --watch -o=wide --namespace $args }
+function kgposlwowiden() { & kubectl get pods --show-labels --watch -o=wide --namespace $args }
+function kgdepslwowiden() { & kubectl get deployment --show-labels --watch -o=wide --namespace $args }
+function kgwowidesln() { & kubectl get --watch -o=wide --show-labels --namespace $args }
+function kgpowowidesln() { & kubectl get pods --watch -o=wide --show-labels --namespace $args }
+function kgdepwowidesln() { & kubectl get deployment --watch -o=wide --show-labels --namespace $args }
+function kgwslowiden() { & kubectl get --watch --show-labels -o=wide --namespace $args }
+function kgpowslowiden() { & kubectl get pods --watch --show-labels -o=wide --namespace $args }
+function kgdepwslowiden() { & kubectl get deployment --watch --show-labels -o=wide --namespace $args }
