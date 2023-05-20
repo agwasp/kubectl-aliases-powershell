@@ -1,8 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright 2017 Google Inc.
-#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -34,10 +32,13 @@ def main(argv):
 
     ops = [
         ('a', 'apply --recursive -f', None, None),
+        ('ak', 'apply -k', None, ['sys']),
+        ('k', 'kustomize', None, ['sys']),
         ('ex', 'exec -i -t', None, None),
         ('lo', 'logs -f', None, None),
         ('lop', 'logs -f -p', None, None),
         ('p', 'proxy', None, ['sys']),
+        ('pf', 'port-forward', None, ['sys']),
         ('g', 'get', None, None),
         ('d', 'describe', None, None),
         ('rm', 'delete', None, None),
@@ -73,7 +74,7 @@ def main(argv):
     positional_args = [('f', '--recursive -f', ['g', 'd', 'rm'], res_types + ['all'
                        , 'l', 'sys']), ('l', '-l', ['g', 'd', 'rm'], ['f',
                        'all']), ('n', '--namespace', ['g', 'd', 'rm',
-                       'lo', 'ex'], ['ns', 'no', 'sys', 'all'])]
+                       'lo', 'ex', 'pf'], ['ns', 'no', 'sys', 'all'])]
 
     # [(part, optional, take_exactly_one)]
     parts = [
@@ -111,7 +112,7 @@ def main(argv):
             print("alias {}='{}'".format(''.join([a[0] for a in cmd]),
               ' '.join([a[1] for a in cmd])))
         elif output in ("ps1", "powershell"):
-            tpl = "function {}([Parameter(ValueFromRemainingArguments = $true)]$params) {{ & {} $params }}"
+            tpl = "function {}() {{ & {} $args }}"
             print(tpl.format(''.join([a[0] for a in cmd]),
               ' '.join([a[1] for a in cmd])))
 
@@ -139,7 +140,8 @@ def gen(parts):
         new_out = []
         for segment in combos:
             for stuff in orig:
-                new_out.append(stuff + segment)
+                if is_valid(stuff + segment):
+                    new_out.append(stuff + segment)
         out = new_out
     return out
 
